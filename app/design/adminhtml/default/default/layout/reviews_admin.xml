@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_reviews_dashboard>
+        <reference name="content">
+            <block type="adminhtml/template" name="dashboard" template="reviews/dashboard.phtml"/>
+        </reference>
+	</adminhtml_reviews_dashboard>
+    <adminhtml_reviews_export>
+        <reference name="content">
+            <block type="adminhtml/template" name="export" template="reviews/export.phtml"/>
+        </reference>
+    </adminhtml_reviews_export>
+</layout>
