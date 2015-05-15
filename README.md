@@ -4,7 +4,9 @@
 
 - Clone this repo.
 
-- Run setup.sh path/to/magento
+- Chmod 0777 setup.sh
+
+- Run: ./setup.sh path/to/magento
 
 - This will create symlinks within magento installation
 
