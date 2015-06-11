@@ -141,6 +141,14 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>                    
 						</product_widget_enabled>
+						<product_widget_colour>
+							<label>Widget Colour</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_widget_colour>
                                                 <!--						<product_hide_noreviews>
 							<label>Hide widget for products with no reviews</label>
 							<frontend_type>select</frontend_type>                                                                     

@@ -1,28 +1,44 @@
 <?php
-$enabled = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_enabled',Mage::app()->getStore());
-$hide_noreviews = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_hide_noreviews',Mage::app()->getStore())? 1 : 0;
-$jquery = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/include_jquery',Mage::app()->getStore());
-$store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id',Mage::app()->getStore());
-$region = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region',Mage::app()->getStore());
-$sku = Mage::registry('current_product')->getSku(); 
-$name = Mage::registry('current_product')->getName(); 
-if($jquery){
-	echo '<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>';
-}
 
-$api_url = 'http://dash.reviews.co.uk';
-if($region == 'US'){
-	$api_url = 'http://dash.review.io';
-}
 
-if($store_id && $enabled){
-	$url = $api_url."/widgets/productreviewscode?store=".urlencode($store_id)."&sku=".urlencode($sku)."&name=".urlencode($name)."&static=1&hide_noreviews=".$hide_noreviews;
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-	$data = curl_exec($ch);
-	curl_close($ch);
-	echo $data; 
-}
+$enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_enabled', Mage::app()->getStore());
+$colour   = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_colour', Mage::app()->getStore());
+$store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
+$region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
+$sku      = Mage::registry('current_product')->getSku();
+
+$api_url = 'widget.reviews.co.uk';
+if ($region == 'US') $api_url = 'widget.review.io';
+
+// people will sometimes put hash and sometimes they will forgot so we need to check for this error
+if(strpos($colour,'#') === FALSE) $colour = '#'.$colour;
+
+// checking to see if we hare a valid colour. If not then we change it to reviews default hex colour
+if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
+
 ?>
+
+
+<!-- Only Display this if enabled -->
+<?php if ($enabled) : ?>
+
+	<script src="https://<?php echo $api_url ?>/product/dist.js"></script>
+	<div id="widget"></div>
+	<script type="text/javascript">
+		productWidget("widget", {
+			store: '<?php echo $store_id; ?>',
+			sku: '<?php echo $sku; ?>', // Multiple SKU"s Seperated by Semi-Colons
+			primaryClr: "<?php echo $colour; ?>",
+			neutralClr: "#EBEBEB",
+			buttonClr: "#EEE",
+			textClr: "#333",
+			tabClr: "#eee",
+			questions: true,
+			showTabs: true,
+			ratingStars: false,
+			showAvatars: true
+		});
+	</script>
+
+<?php endif ?>
+
