@@ -36,11 +36,12 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$data = curl_exec($ch);
 		} catch (Exception $e)
 		{
-			throw new Exception('Could not connect to Reviews.co.uk API');
+			Mage::getSingleton('core/session')->addSuccess('Cannot connect to Reviews API');
+			$this->_redirectUrl('/index.php/admin');
 		}
 
 		try
@@ -70,6 +71,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 		// Import Counter
 		$imported = 0;
 		$skipped = 0;
+		$total = 0;
 
 		// Table Prefix
 		$prefix = Mage::getConfig()->getTablePrefix();
@@ -88,9 +90,11 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 					$skipped++;
 
 					$comment     = $row->review;
+
 					$connection  = Mage::getSingleton('core/resource')->getConnection('core_read');
-					$sql         = "Select * from " . $prefix . "review_detail WHERE detail ='" . $comment . "'";
-					$reviewExist = $connection->fetchRow($sql);
+					$sql         = "Select * from " . $prefix . "review_detail WHERE detail = ? ";
+					$reviewExist = $connection->fetchRow($sql, $comment);
+
 					$review      = (count($reviewExist) == 0) ? Mage::getModel('review/review') : Mage::getModel('review/review')->load($reviewExist['review_id']);
 
 					$product_id = Mage::getModel("catalog/product")->getIdBySku($row->sku);
