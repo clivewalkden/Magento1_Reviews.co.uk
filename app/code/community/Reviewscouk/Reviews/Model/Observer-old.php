@@ -17,7 +17,6 @@ class Reviewscouk_Reviews_Model_Observer
 				$shipment = $observer->getEvent()->getShipment();
 				$order = $shipment->getOrder();
 
-
 				$curlUrl = $this->api_url.'/api/post/Invitation'.
 				'?name='.urlencode($order->getCustomerName()).
 				'&email='.urlencode($order->getCustomerEmail()).
@@ -79,7 +78,7 @@ class Reviewscouk_Reviews_Model_Observer
 			$curl = new Varien_Http_Adapter_Curl();
 			$curl->setConfig(array(
 				'timeout'=>15,
-				'useragent'=>$this->getuseragent($_server['http_host'])
+				'useragent'=>$this->getuseragent($_SERVER['http_host'])
 			));
 			$curl->write(Zend_Http_Client::GET, $url, '1.0');
 				
@@ -143,7 +142,6 @@ class Reviewscouk_Reviews_Model_Observer
 		}
 		return false;
 	}
-
 
 	/**
 	 * Check if debug is enabled

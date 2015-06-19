@@ -2,7 +2,7 @@
 
 class Reviewscouk_Reviews_Model_Observer
 {
-	private $api_url = 'http://dash.reviews.co.uk';
+	private $api_url = 'https://api.reviews.co.uk';
 
 	/**
 	 * This method is called after an order is placed
@@ -16,17 +16,31 @@ class Reviewscouk_Reviews_Model_Observer
 			$magento_store_id = $order->getStoreId();
 			if ($this->getRegion($magento_store_id) == 'US')
 			{
-				$this->api_url = 'http://dash.review.io';
+				$this->api_url = 'http://api.review.io';
 			}
+
 			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && Mage::getStoreConfig('reviewscouk_reviews_settings/general/reviews_merchant_enabled', $magento_store_id))
 			{
-				$curlUrl = $this->api_url . '/api/post/Invitation' .
-					'?name=' . urlencode($order->getCustomerName()) .
-					'&email=' . urlencode($order->getCustomerEmail()) .
-					'&order_id=' . urlencode($order->getRealOrderId()) .
-					'&store=' . urlencode($this->getStoreId($magento_store_id)) .
-					'&apikey=' . urlencode($this->getApiKey($magento_store_id));
-				$this->apiCall($curlUrl);
+				$order_params             = array();
+				$order_params['name']     = $order->getCustomerName();
+				$order_params['store']    = $this->getStoreId($magento_store_id);
+				$order_params['email']    = $order->getCustomerEmail();
+				$order_params['order_id'] = $order->getRealOrderId();
+				$order_params['api_key']  = $this->getApiKey($magento_store_id);
+
+				$product_url_string = $this->api_url . '/merchant/invitation';
+				$ch                 = curl_init($product_url_string);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+					'store:' . $this->getStoreId($magento_store_id),
+					'apikey:' . $this->getApiKey($magento_store_id)
+				));
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $order_params);
+				curl_exec($ch);
+
+				curl_close($ch);
 			}
 			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && Mage::getStoreConfig('reviewscouk_reviews_settings/general/reviews_products_enabled', $magento_store_id))
 			{
@@ -37,9 +51,9 @@ class Reviewscouk_Reviews_Model_Observer
 					$item = Mage::getModel('catalog/product')->load($item->getProductId());
 
 					// If product is part of a grouped product, use the grouped product details.
-					$enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/advanced/reviews_use_group_product_sku', Mage::app()->getStore());
+					$enabled = Mage::getStoreConfig('reviewscouk_reviews_settings/advanced/reviews_use_group_product_sku', Mage::app()->getStore());
 
-					if($enabled)
+					if ($enabled)
 					{
 						// If product is part of a grouped product, use the grouped product details.
 						$parentIds = Mage::getModel('catalog/product_type_grouped')->getParentIdsByChild($item->getId());
@@ -59,24 +73,38 @@ class Reviewscouk_Reviews_Model_Observer
 						'pageUrl' => $item->getProductUrl()
 					);
 				}
-				$curlUrl = $this->api_url . '/api/post/ProductInvitation' .
-					'?name=' . urlencode($order->getCustomerName()) .
-					'&email=' . urlencode($order->getCustomerEmail()) .
-					'&order_id=' . urlencode($order->getRealOrderId()) .
-					'&apikey=' . urlencode($this->getApiKey($magento_store_id)) .
-					'&store=' . urlencode($this->getStoreId($magento_store_id)) .
-					'&products=' . urlencode(json_encode($p));
 
-				$this->apiCall($curlUrl);
+				$post_params['order_id'] = $order->getRealOrderId();
+				$post_params['email']    = $order->getCustomerEmail();
+				$post_params['name']     = $order->getCustomerName();
+				$post_params['products'] = json_encode($p);
+
+				// Send product request
+				$product_url_string = $this->api_url . '/product/invitation';
+				$ch                 = curl_init($product_url_string);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+					'store:' . $this->getStoreId($magento_store_id),
+					'apikey:' . $this->getApiKey($magento_store_id)
+				));
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $post_params);
+				curl_exec($ch);
+
+				curl_close($ch);
 			}
+
 		} catch (Exception $e)
 		{
+
 			if ($this->debugEnabled())
 			{
 				echo "Oops! Something went wrong";
 				exit();
 			}
 		}
+
 	}
 
 	/**
