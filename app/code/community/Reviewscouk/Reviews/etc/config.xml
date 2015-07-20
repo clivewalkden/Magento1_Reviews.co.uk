@@ -59,14 +59,16 @@
             </updates>
         </layout>
     </adminhtml>
-   <frontend>
-        <layout>
-            <updates>
-                <reviews_layout module="Reviews_Layout">
-                    <file>reviews_layout.xml</file>
-                </reviews_layout>
-            </updates>
-        </layout>
+    <frontend>
+        <routers>
+            <reviews>
+                <use>standard</use>
+                <args>
+                    <module>Reviewscouk_Reviews</module>
+                    <frontName>reviews</frontName>
+                </args>
+            </reviews>
+        </routers>
     </frontend>
 	<admin>
         <routers>
