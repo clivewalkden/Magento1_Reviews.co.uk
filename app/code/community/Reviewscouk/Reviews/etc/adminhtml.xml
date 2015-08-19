@@ -13,13 +13,13 @@
                 <dashboard module="reviewshelper" translate="title">
                     <title>Dashboard</title>
                     <sort_order>1</sort_order>
-					<action>adminhtml/reviews/dashboard</action>
+		    <action>adminhtml/reviews/dashboard</action>
                 </dashboard>
-                <!--<export module="reviewshelper" translate="title">
+                <export module="reviewshelper" translate="title">
                     <title>Export Magento Reviews</title>
                     <sort_order>2</sort_order>
                     <action>adminhtml/reviews/export</action>
-                  </export>-->
+                </export>
                 <sync module="reviewshelper" translate="title">
                     <title>Sync Reviews</title>
                     <sort_order>2</sort_order>

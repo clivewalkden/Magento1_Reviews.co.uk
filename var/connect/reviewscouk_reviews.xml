@@ -1,5 +1,5 @@
 <_>
-   <form_key>0Zg1pFgcp6LqiWhn</form_key>
+   <form_key>V2ynFN79kcTzevJB</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,11 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.2.0</version>
+   <version>0.3.0</version>
    <stability>stable</stability>
-   <notes>Added Multi-Store support</notes>
+   <notes>- Updated Product Widget
+
+- Added Sync Function</notes>
    <authors>
       <name>
          <name>Liam Keily</name>
@@ -40,7 +42,7 @@
             <max/>
          </max>
          <files>
-            <files>                                          </files>
+            <files>                                             </files>
          </files>
       </package>
       <extension>
@@ -102,4 +104,8 @@
          <ignore/>
       </ignore>
    </contents>
+   <page>1</page>
+   <limit>200</limit>
+   <folder/>
+   <package/>
 </_>
