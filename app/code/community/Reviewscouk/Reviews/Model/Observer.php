@@ -197,7 +197,7 @@ class Reviewscouk_Reviews_Model_Observer
 		return Mage::getStoreConfig('reviewscouk_reviews_settings/advanced/debug');
 	}
 
-	function setStatus()
+	function createFeed()
 	{
 		$curl = curl_init();
 		curl_setopt_array($curl, array(

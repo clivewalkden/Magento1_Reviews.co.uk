@@ -77,7 +77,7 @@
                     <cron_expr>30 2 * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>reviewsmodel/observer::setStatus</model>
+                    <model>reviewsmodel/observer::createFeed</model>
                 </run>
             </reviewsmodel>
         </jobs>
