@@ -196,4 +196,19 @@ class Reviewscouk_Reviews_Model_Observer
 	{
 		return Mage::getStoreConfig('reviewscouk_reviews_settings/advanced/debug');
 	}
+
+	function setStatus()
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL            => Mage::getBaseUrl().'reviews/index/feed',
+			CURLOPT_USERAGENT      => 'Codular Sample cURL Request',
+			CURLOPT_POST           => 1,
+		));
+
+		$resp = curl_exec($curl);
+		curl_close($curl);
+		//Mage::log(Mage::getBaseUrl().'reviews/index/feed');
+	}
 }

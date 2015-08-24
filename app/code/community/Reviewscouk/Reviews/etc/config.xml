@@ -70,6 +70,18 @@
             </reviews>
         </routers>
     </frontend>
+    <crontab>
+        <jobs>
+            <reviewsmodel>
+                <schedule>
+                    <cron_expr>30 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>reviewsmodel/observer::setStatus</model>
+                </run>
+            </reviewsmodel>
+        </jobs>
+    </crontab>
 	<admin>
         <routers>
             <adminhtml>
