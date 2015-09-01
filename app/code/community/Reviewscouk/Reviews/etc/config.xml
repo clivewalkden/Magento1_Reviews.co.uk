@@ -70,6 +70,15 @@
             </reviews>
         </routers>
     </frontend>
+    <frontend>
+        <layout>
+            <updates>
+                <reviews_layout module="Reviews_Layout">
+                    <file>reviews_layout.xml</file>
+                </reviews_layout>
+            </updates>
+        </layout>
+    </frontend>
     <crontab>
         <jobs>
             <reviewsmodel>
