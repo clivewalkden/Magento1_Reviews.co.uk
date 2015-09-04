@@ -1,7 +1,6 @@
 <?php
-
-
 $enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_enabled', Mage::app()->getStore());
+$rich_snippets_enabled = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
 $colour   = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_colour', Mage::app()->getStore());
 $store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
 $region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
@@ -20,8 +19,7 @@ if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
 
 
 <!-- Only Display this if enabled -->
-<?php if ($enabled) : ?>
-
+<?php if ($enabled): ?>
 	<script src="https://<?php echo $api_url ?>/product/dist.js"></script>
 	<div id="widget"></div>
 	<script type="text/javascript">
@@ -39,6 +37,13 @@ if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
 			showAvatars: true
 		});
 	</script>
+<?php endif; ?>
 
-<?php endif ?>
+<?php
+if($rich_snippets_enabled):
+?>
+
+<?php
+endif;
+?>
 
