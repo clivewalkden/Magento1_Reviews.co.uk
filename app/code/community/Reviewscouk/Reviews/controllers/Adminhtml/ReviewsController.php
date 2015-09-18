@@ -66,6 +66,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 	{
 		// Getting the Store ID
 		$storeId = Mage::app()->getStore()->getId();
+
 		if (!$storeId) $storeId = 1;
 
 		// Import Counter
@@ -124,61 +125,14 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 
 							foreach ($ratings as $label => $value)
 							{
-								$rating = Mage::getModel('rating/rating')->getCollection()
-											  ->addFieldToFilter('rating_code', $value->rating_text)->load()
-											  ->setPageSize(1)
-											  ->load()
-											  ->getFirstItem();
-
-								// Sometimes there might be a option that does not exist in Magento so will be
-								// Creating a new record in rating, rating_options table,
-								if (!$rating->getId())
-								{
-									$rating = $this->createNewRatings($value->rating_text);
-								}
-
-								if ($rating->getId())
-								{
-									$ratingOption = Mage::getModel('rating/rating_option')->getCollection()
-														->addFieldToFilter('rating_id', $rating->getId())
-														->addFieldToFilter('value', $value->rating)->load()
-														->setPageSize(1)
-														->load()
-														->getFirstItem();
-
-									// This is just to be safe so for some reason if the rating options doesn't exist then
-									// we will create a new one
-									if (!$ratingOption->getId())
-									{
-										$this->createRatingsOptions($rating->getId());
-
-										$ratingOption = Mage::getModel('rating/rating_option')->getCollection()
-															->addFieldToFilter('rating_id', $rating->getId())
-															->addFieldToFilter('value', $value->rating)->load()
-															->setPageSize(1)
-															->load()
-															->getFirstItem();
-									}
-
-									if ($ratingOption->getId())
-									{
-										// There was a problem with duplicate vote for a reviews
-										// So we are checking using the review ID and Rating Id (Both of them together makes a primary key) and only create
-										// a new row if both of them doesn't exist.
-										$sql       = "Select * from " . $prefix . "rating_option_vote WHERE rating_id ='" . $rating->getId() . "' AND review_id = '" . $review->getId() . "'";
-										$voteExist = $connection->fetchRow($sql);
-										if(!$voteExist)
-										{
-											$ratingVote = Mage::getModel('rating/rating');
-											$ratingVote->setRatingId($rating->getId())
-													   ->setReviewId($review->getId())
-													   ->addOptionVote($ratingOption->getId(), $product_id);
-										}
-									}
-								}
+								$this->sortRatings($value->rating_text,$value->rating, $product_id, $connection, $prefix, $review);
 							}
 
 							$review->aggregate();
+						}
+						else
+						{
+							$this->sortRatings('Rating', $row->rating,$product_id, $connection, $prefix, $review);
 						}
 					}
 				}
@@ -192,6 +146,63 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
+		}
+	}
+
+	private function sortRatings($ratingText, $ratingNumber, $product_id, $connection, $prefix, $review)
+	{
+		$rating = Mage::getModel('rating/rating')->getCollection()
+					  ->addFieldToFilter('rating_code', $ratingText)->load()
+					  ->setPageSize(1)
+					  ->load()
+					  ->getFirstItem();
+
+		// Sometimes there might be a option that does not exist in Magento so will be
+		// Creating a new record in rating, rating_options table,
+		if (!$rating->getId())
+		{
+			$rating = $this->createNewRatings($ratingText);
+		}
+
+		if ($rating->getId())
+		{
+			$ratingOption = Mage::getModel('rating/rating_option')->getCollection()
+								->addFieldToFilter('rating_id', $rating->getId())
+								->addFieldToFilter('value', $ratingNumber)->load()
+								->setPageSize(1)
+								->load()
+								->getFirstItem();
+
+			// This is just to be safe so for some reason if the rating options doesn't exist then
+			// we will create a new one
+			if (!$ratingOption->getId())
+			{
+				$this->createRatingsOptions($rating->getId());
+
+				$ratingOption = Mage::getModel('rating/rating_option')->getCollection()
+									->addFieldToFilter('rating_id', $rating->getId())
+									->addFieldToFilter('value', $ratingNumber)->load()
+									->setPageSize(1)
+									->load()
+									->getFirstItem();
+			}
+
+			if ($ratingOption->getId())
+			{
+
+				// There was a problem with duplicate vote for a reviews
+				// So we are checking using the review ID and Rating Id (Both of them together makes a primary key) and only create
+				// a new row if both of them doesn't exist.
+				$sql       = "Select * from " . $prefix . "rating_option_vote WHERE rating_id ='" . $rating->getId() . "' AND review_id = '" . $review->getId() . "'";
+				$voteExist = $connection->fetchRow($sql);
+				if(!$voteExist)
+				{
+					$ratingVote = Mage::getModel('rating/rating');
+					$ratingVote->setRatingId($rating->getId())
+							   ->setReviewId($review->getId())
+							   ->addOptionVote($ratingOption->getId(), $product_id);
+				}
+			}
 		}
 	}
 
