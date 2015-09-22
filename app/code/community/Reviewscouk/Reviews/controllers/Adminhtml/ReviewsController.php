@@ -189,7 +189,6 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 
 			if ($ratingOption->getId())
 			{
-
 				// There was a problem with duplicate vote for a reviews
 				// So we are checking using the review ID and Rating Id (Both of them together makes a primary key) and only create
 				// a new row if both of them doesn't exist.
