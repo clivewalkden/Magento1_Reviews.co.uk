@@ -67,6 +67,17 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 		// Getting the Store ID
 		$storeId = Mage::app()->getStore()->getId();
 
+                $storeIds = array();
+                foreach (Mage::app()->getWebsites() as $website) {
+                    foreach ($website->getGroups() as $group) {
+                        $stores = $group->getStores();
+                        foreach ($stores as $store) {
+                            //$store is a store object
+                            $storeIds[] = $store->store_id;
+                        }
+                    }
+                }
+
 		if (!$storeId) $storeId = 1;
 
 		// Import Counter
@@ -88,6 +99,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 				foreach ($fetch->reviews as $row)
 				{
 
+
 					$skipped++;
 
 					$comment     = $row->review;
@@ -103,6 +115,8 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 					// Only Importing if the product exist on magento side
 					if ($product_id)
 					{
+                                                echo $row->sku;
+
 						$imported++;
 
 						$review->setEntityPkValue($product_id);
@@ -110,13 +124,17 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 						$review->setTitle(substr($comment, 0, 50));
 						$review->setDetail($comment);
 						$review->setEntityId(1);
-						$review->setStoreId($storeId);
+						$review->setStoreId($storeIds);
 						$review->setStatusId(1);
 						$review->setCustomerId(null);
 						$review->setNickname($row->reviewer->first_name . ' ' . $row->reviewer->last_name);
 						$review->setReviewId($review->getId());
 						$review->setStores(array(0, $storeId));
 						$review->save();
+
+                                                print_r($row->ratings);
+
+                                                echo $row->rating."<br />";
 
 						// If the user has provided ratings then we need to add some data to ratings table.
 						if (count($row->ratings) > 0)
@@ -133,10 +151,13 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 						else
 						{
 							$this->sortRatings('Rating', $row->rating,$product_id, $connection, $prefix, $review);
+
+							$review->aggregate();
 						}
 					}
 				}
 			}
+                        die();
 
 			$skipped = $skipped - $imported;
 			$message = " Total number of reviews imported or updated were ".$imported .", Number of reviews skipped were ".$skipped;
