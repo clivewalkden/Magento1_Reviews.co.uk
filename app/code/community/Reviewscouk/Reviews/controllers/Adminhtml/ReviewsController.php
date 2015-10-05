@@ -99,7 +99,6 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 				foreach ($fetch->reviews as $row)
 				{
 
-
 					$skipped++;
 
 					$comment     = $row->review;
@@ -115,26 +114,23 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 					// Only Importing if the product exist on magento side
 					if ($product_id)
 					{
-                                                echo $row->sku;
 
 						$imported++;
+
 
 						$review->setEntityPkValue($product_id);
 						$review->setStatusId(1);
 						$review->setTitle(substr($comment, 0, 50));
 						$review->setDetail($comment);
 						$review->setEntityId(1);
-						$review->setStoreId($storeIds);
+						$review->setStoreId($storeId);
 						$review->setStatusId(1);
 						$review->setCustomerId(null);
 						$review->setNickname($row->reviewer->first_name . ' ' . $row->reviewer->last_name);
 						$review->setReviewId($review->getId());
-						$review->setStores(array(0, $storeId));
+						$review->setStores(array(0, $storeIds));
 						$review->save();
 
-                                                print_r($row->ratings);
-
-                                                echo $row->rating."<br />";
 
 						// If the user has provided ratings then we need to add some data to ratings table.
 						if (count($row->ratings) > 0)
@@ -157,7 +153,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 					}
 				}
 			}
-                        die();
+
 
 			$skipped = $skipped - $imported;
 			$message = " Total number of reviews imported or updated were ".$imported .", Number of reviews skipped were ".$skipped;

@@ -176,7 +176,7 @@
                     </comment>
                 </product_feed>
 
-                <!--<rich_snippet translate="label">
+                <rich_snippet translate="label">
                     <label>Rich Snippets</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>5</sort_order>
@@ -194,7 +194,7 @@
                             <show_in_store>1</show_in_store>
                         </rich_snippet_enabled>
                     </fields>
-                </rich_snippet>-->
+                </rich_snippet>
 
                 <advanced translate="label">
                     <label>Advanced Settings</label>

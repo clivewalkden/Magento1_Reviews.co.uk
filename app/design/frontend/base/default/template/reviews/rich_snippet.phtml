@@ -1,0 +1,23 @@
+<?php
+$enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
+$store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
+$region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
+
+if(Mage::registry('current_product'))
+{
+	$sku      = Mage::registry('current_product')->getSku();
+}
+else
+{
+	$sku = '';
+}
+?>
+<?php if($enabled) : ?>
+<script src="http://widget.reviews.co.uk/rich-snippet/dist.js"></script>
+<script>
+	richSnippet({
+		store: '<?php echo $store_id; ?>',
+		sku: '<?php echo $sku  ?>'
+	});
+</script>
+<?php endif ?>
