@@ -1,5 +1,5 @@
-find . -name '*.swp' -delete
-find . -name '*.swo' -delete
-find . -name '*.swn' -delete
-find . -name '*.map' -delete
+find . -name '*.swp' -type f -delete
+find . -name '*.swo' -type f -delete
+find . -name '*.swn' -type f -delete
+find . -name '*.map' -type f -delete
 
