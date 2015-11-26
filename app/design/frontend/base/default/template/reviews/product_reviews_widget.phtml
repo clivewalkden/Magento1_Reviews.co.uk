@@ -1,10 +1,27 @@
 <?php
 $enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_enabled', Mage::app()->getStore());
-$rich_snippets_enabled = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
 $colour   = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_colour', Mage::app()->getStore());
 $store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
 $region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
-$sku      = Mage::registry('current_product')->getSku();
+$product = Mage::registry('current_product');
+$sku      = $product->getSku();
+$type = $product->getTypeID();
+
+$productSkus = array($sku);
+
+if($type == 'configurable'){
+	$usedProducts = $product->getTypeInstance() ->getUsedProducts();
+	foreach($usedProducts as $usedProduct){
+		$productSkus[] = $usedProduct->getSku();
+	}
+}
+
+if($type == 'grouped'){
+	$usedProducts = $product->getTypeInstance()->getAssociatedProducts();
+	foreach($usedProducts as $usedProduct){
+		$productSkus[] = $usedProduct->getSku();
+	}
+}
 
 $api_url = 'widget.reviews.co.uk';
 if ($region == 'US') $api_url = 'widget.review.io';
@@ -14,9 +31,7 @@ if(strpos($colour,'#') === FALSE) $colour = '#'.$colour;
 
 // checking to see if we hare a valid colour. If not then we change it to reviews default hex colour
 if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
-
 ?>
-
 
 <!-- Only Display this if enabled -->
 <?php if ($enabled): ?>
@@ -25,7 +40,7 @@ if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
 	<script type="text/javascript">
 		productWidget("widget", {
 			store: '<?php echo $store_id; ?>',
-			sku: '<?php echo $sku; ?>', // Multiple SKU"s Seperated by Semi-Colons
+			sku: '<?php echo implode(';',$productSkus); ?>', // Multiple SKU"s Seperated by Semi-Colons
 			primaryClr: "<?php echo $colour; ?>",
 			neutralClr: "#EBEBEB",
 			buttonClr: "#EEE",
@@ -38,12 +53,3 @@ if(!preg_match('/^#[a-f0-9]{6}$/i', $colour)) $colour = '#5db11f';
 		});
 	</script>
 <?php endif; ?>
-
-<?php
-if($rich_snippets_enabled):
-?>
-
-<?php
-endif;
-?>
-

@@ -1,5 +1,5 @@
 <_>
-   <form_key>VzOO1fwnMTWST83r</form_key>
+   <form_key>aOR56BBuGRPjdinj</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,18 +9,18 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.3.2</version>
+   <version>0.3.4</version>
    <stability>stable</stability>
    <notes>- Bugfixes</notes>
    <authors>
       <name>
-         <name>Liam Keily</name>
+         <name>Reviews.co.uk</name>
       </name>
       <user>
-         <user>Liam</user>
+         <user>Reviews</user>
       </user>
       <email>
-         <email>liam@reviews.co.uk</email>
+         <email>support@reviews.co.uk</email>
       </email>
    </authors>
    <depends_php_min>5.0.0</depends_php_min>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                </files>
+            <files>                                                     </files>
          </files>
       </package>
       <extension>
