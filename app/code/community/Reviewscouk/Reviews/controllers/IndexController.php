@@ -42,8 +42,7 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 					$finalPrice = $product->getFinalPrice();
 
 					$productFeed .= "<item>
-							<!--<g:id>" . $product->getEntityId() . "</g:id> -->
-							<g:id>" . $product->getSku() . "</g:id>
+							<g:id><![CDATA[" . $product->getSku() . "]]></g:id>
 							<title><![CDATA[" . $product->getName() . "]]></title>
 							<link>" . $product->getProductUrl() . "</link>
 							<g:price>" . number_format($price, 2) . " " . Mage::app()->getStore()->getDefaultCurrencyCode() . "</g:price>
