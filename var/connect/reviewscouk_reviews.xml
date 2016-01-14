@@ -9,9 +9,9 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.5.0</version>
+   <version>0.6.0</version>
    <stability>stable</stability>
-   <notes>Rich Snippets Upgrade</notes>
+   <notes>Review Booster Export Feature</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                             </files>
+            <files>                                                              </files>
          </files>
       </package>
       <extension>
