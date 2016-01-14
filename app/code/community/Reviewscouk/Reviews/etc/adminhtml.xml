@@ -13,7 +13,7 @@
                 <dashboard module="reviewshelper" translate="title">
                     <title>Dashboard</title>
                     <sort_order>1</sort_order>
-		    <action>adminhtml/reviews/dashboard</action>
+		            <action>adminhtml/reviews/dashboard</action>
                 </dashboard>
                 <export module="reviewshelper" translate="title">
                     <title>Export Magento Reviews</title>
@@ -25,6 +25,12 @@
                     <sort_order>2</sort_order>
                     <action>adminhtml/reviews/sync</action>
                 </sync>
+                <booster module="reviewshelper" translate="title">
+                    <title>Review Booster CSV</title>
+                    <sort_order>4</sort_order>
+                    <action>adminhtml/reviews/booster</action>
+                </booster>
+
             </children>
         </reviewstab>
     </menu>

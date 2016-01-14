@@ -258,6 +258,43 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 		$this->renderLayout();
 	}
 
+	public function boosterAction()
+	{
+		$this->loadLayout()
+			 ->_setActiveMenu('reviewstab')
+			 ->_title($this->__('Review Booster Download'));
+
+        $booster = array(array('name','email','order_id','product_id'));
+
+        $time = time(); // Now
+        $from = date('Y-m-d H:i:s', $time - (60*60*24*30*3)); // 3 Months
+        $to = date('Y-m-d H:i:s', $time);
+
+        $orders = Mage::getModel('sales/order')->getCollection()->addAttributeToSelect('*')
+        ->addAttributeToFilter('created_at', array('from' => $from, 'to' => $to))->load();
+
+        foreach($orders as $order){
+            $orderItems = $order->getItemsCollection()
+            ->addAttributeToSelect('*')
+            ->addAttributeToFilter('product_type', array('eq'=>'simple'))
+            ->load();
+
+            foreach($orderItems as $Item)
+            {
+                $Item = Mage::getModel('catalog/product')->setStoreId($Item->getStoreId())->load($Item->getProductId());
+                if ($Item->getId())
+                {
+                    $booster[] = array($order->customer_email, $order->customer_firstname.' '.$order->customer_lastname, $order->entity_id, $Item->getSku());
+                }
+            }
+        }
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="booster.csv"');
+
+        echo $this->generateCsv($booster);
+	}
+
 	public function doexportAction()
 	{
 		header('Content-Disposition: attachment; filename="magento_export.json"');
@@ -348,4 +385,17 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 
 		return $result;
 	}
+
+    protected function generateCsv($data, $delimiter = ',', $enclosure = '"') {
+       $handle = fopen('php://temp', 'r+');
+       foreach ($data as $line) {
+               fputcsv($handle, $line, $delimiter, $enclosure);
+       }
+       rewind($handle);
+       while (!feof($handle)) {
+               $contents .= fread($handle, 8192);
+       }
+       fclose($handle);
+       return $contents;
+    }
 }
