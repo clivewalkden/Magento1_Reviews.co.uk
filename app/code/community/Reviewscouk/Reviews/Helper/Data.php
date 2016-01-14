@@ -1,6 +1,11 @@
 <?php
 class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     public function getRichSnippet($sku=''){
+
+        if(is_array($sku)){
+            $sku = implode(';',$sku);
+        }
+
         $cache = Mage::app()->getCache();
 
 		$apikey = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key', Mage::app()->getStore());
@@ -32,5 +37,32 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
         }
 
         return $output;
+    }
+
+
+    /*
+     * Product Parameter: Mage::registry('current_product')
+     */
+    public function getProductSkus($product){
+        $sku      = $product->getSku();
+        $type = $product->getTypeID();
+
+        $productSkus = array($sku);
+
+        if($type == 'configurable'){
+            $usedProducts = $product->getTypeInstance() ->getUsedProducts();
+            foreach($usedProducts as $usedProduct){
+                $productSkus[] = $usedProduct->getSku();
+            }
+        }
+
+        if($type == 'grouped'){
+            $usedProducts = $product->getTypeInstance()->getAssociatedProducts();
+            foreach($usedProducts as $usedProduct){
+                $productSkus[] = $usedProduct->getSku();
+            }
+        }
+
+        return $productSkus;
     }
 }

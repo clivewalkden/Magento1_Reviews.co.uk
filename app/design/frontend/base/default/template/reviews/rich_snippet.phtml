@@ -4,7 +4,7 @@ $enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich
 $sku = '';
 if(Mage::registry('current_product'))
 {
-	$sku = Mage::registry('current_product')->getSku();
+$sku = Mage::helper('reviewshelper')->getProductSkus(Mage::registry('current_product'));
 }
 ?>
 

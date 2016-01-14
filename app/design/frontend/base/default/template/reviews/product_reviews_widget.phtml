@@ -3,24 +3,11 @@ $enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_wi
 $colour   = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_colour', Mage::app()->getStore());
 $store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
 $region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
-$product = Mage::registry('current_product');
-$sku      = $product->getSku();
-$type = $product->getTypeID();
 
-$productSkus = array($sku);
-
-if($type == 'configurable'){
-	$usedProducts = $product->getTypeInstance() ->getUsedProducts();
-	foreach($usedProducts as $usedProduct){
-		$productSkus[] = $usedProduct->getSku();
-	}
-}
-
-if($type == 'grouped'){
-	$usedProducts = $product->getTypeInstance()->getAssociatedProducts();
-	foreach($usedProducts as $usedProduct){
-		$productSkus[] = $usedProduct->getSku();
-	}
+$productSkus = array();
+if(Mage::registry('current_product'))
+{
+    $productSkus = Mage::helper('reviewshelper')->getProductSkus(Mage::registry('current_product'));
 }
 
 $api_url = 'widget.reviews.co.uk';
