@@ -1,16 +1,7 @@
 <?php
 $enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
-
-$sku = '';
-if(Mage::registry('current_product'))
-{
-$sku = Mage::helper('reviewshelper')->getProductSkus(Mage::registry('current_product'));
-}
-?>
-
-<?php 
 if($enabled){
-echo Mage::helper('reviewshelper')->getRichSnippet($sku); 
+    echo Mage::helper('reviewshelper')->getRichSnippet(); 
 }
 ?>
 
