@@ -1,13 +1,16 @@
 <?php
 class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
-    public function getRichSnippet(){
 
+    public function autoRichSnippet(){
         $sku = '';
         if(Mage::registry('current_product')){
             $sku = $this->getProductSkus(Mage::registry('current_product'));
         }
+        return $this->getRichSnippet($sku);
+    }
 
-        if(is_array($sku)){
+    public function getRichSnippet($sku=null){
+        if(isset($sku) && is_array($sku)){
             $sku = implode(';',$sku);
         }
 
@@ -18,7 +21,7 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 		$storeName = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
         $url = $region == 'us'? 'http://dash.reviews.io/external/rich-snippet/'.$storeName : 'http://dash.reviews.co.uk/external/rich-snippet/'.$storeName;
 
-        if(!empty($sku)){
+        if(isset($sku) && !empty($sku)){
             $url = $region == 'us'? 'http://dash.reviews.io/external/rich-snippet/'.$storeName.'?sku='.$sku : 'http://dash.reviews.co.uk/external/rich-snippet/'.$storeName.'?sku='.$sku;
         }
 
@@ -43,7 +46,6 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 
         return $output;
     }
-
 
     /*
      * Product Parameter: Mage::registry('current_product')
