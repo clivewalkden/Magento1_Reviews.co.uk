@@ -4,15 +4,17 @@ class Reviewscouk_Reviews_Model_Observer
 {
 	private $api_url = 'https://api.reviews.co.uk';
 
-	/**
-	 * This method is called after an order is placed
-	 */
-	public function dispatch_notification(Varien_Event_Observer $observer)
+	/* Called when shipment is created */
+	public function order_shipped(Varien_Event_Observer $observer){
+		$shipment = $observer->getEvent()->getShipment();
+		$order = $shipment->getOrder();
+		$this->dispatch_notification($order);
+	}
+
+	public function dispatch_notification($order)
 	{
 		try
 		{
-			$shipment         = $observer->getEvent()->getShipment();
-			$order            = $shipment->getOrder();
 			$magento_store_id = $order->getStoreId();
 			if ($this->getRegion($magento_store_id) == 'US')
 			{
@@ -95,9 +97,9 @@ class Reviewscouk_Reviews_Model_Observer
 				curl_close($ch);
 			}
 
-		} catch (Exception $e)
+		}
+		catch (Exception $e)
 		{
-
 			if ($this->debugEnabled())
 			{
 				echo "Oops! Something went wrong";
@@ -210,5 +212,12 @@ class Reviewscouk_Reviews_Model_Observer
 		$resp = curl_exec($curl);
 		curl_close($curl);
 		//Mage::log(Mage::getBaseUrl().'reviews/index/feed');
+	}
+
+	public function sync_product_feed(){
+		$store_id = $this->getStoreId();
+		$apikey = $this->getApiKey();
+
+		$feedUrl = Mage::getBaseUrl().'reviews/index/feed';
 	}
 }

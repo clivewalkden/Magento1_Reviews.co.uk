@@ -19,30 +19,10 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 		$apikey = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key', Mage::app()->getStore());
 		$region = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
 		$storeName = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
-        $url = $region == 'us'? 'http://dash.reviews.io/external/rich-snippet/'.$storeName : 'http://dash.reviews.co.uk/external/rich-snippet/'.$storeName;
+        $url = $region == 'us'? 'https://widget.reviews.io/rich-snippet/dist.js' : 'https://widget.reviews.co.uk/rich-snippet/dist.js';
 
-        if(isset($sku) && !empty($sku)){
-            $url = $region == 'us'? 'http://dash.reviews.io/external/rich-snippet/'.$storeName.'?sku='.$sku : 'http://dash.reviews.co.uk/external/rich-snippet/'.$storeName.'?sku='.$sku;
-        }
-
-        $output = '';
-
-        try {
-            $cacheKey = 'rich_snippet_'.$sku;
-            $output = $cache->load($cacheKey);
-            if(!$output){
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL,$url);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $output = curl_exec ($ch);
-                curl_close ($ch);
-
-                $cache->save($output, $cacheKey, array("reviews_cache"), 60*60);
-            }
-        }
-        catch(Exception $e){
-        }
+        $output = '<script src="'.$url.'"></script>';
+        $output .= '<script>richSnippet({ store: "'.$storeName.'", sku:"'.$sku.'" })</script>';
 
         return $output;
     }

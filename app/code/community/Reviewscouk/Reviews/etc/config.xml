@@ -24,11 +24,21 @@
                 <observers>
                     <notification>
                         <class>reviewsmodel/observer</class>
-                        <method>dispatch_notification</method>
+                        <method>order_shipped</method>
                         <type>singleton</type>
                    </notification>
                 </observers>
             </sales_order_shipment_save_after>
+
+            <admin_system_config_changed_section_reviewscouk_reviews_settings>
+                 <observers>
+                     <sync_product_feed>
+                         <class>reviewsmodel/observer</class>
+                         <method>sync_product_feed</method>
+                         <type>singleton</type>
+                    </sync_product_feed>
+                  </observers>
+            </admin_system_config_changed_section_reviewscouk_reviews_settings>
         </events>
     </global>
     <adminhtml>

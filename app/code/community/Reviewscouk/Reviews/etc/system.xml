@@ -4,7 +4,7 @@
             <label>Reviews.co.uk</label>
             <sort_order>1</sort_order>
         </reviewscouk_reviews>
-    </tabs> 
+    </tabs>
 	<sections>
         <reviewscouk_reviews_settings translate="label">
             <label>Setup</label>
@@ -13,7 +13,7 @@
             <sort_order>1000</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
-            <show_in_store>1</show_in_store>                    
+            <show_in_store>1</show_in_store>
 			<groups>
 	             <intro translate="label">
                     <label>Introduction</label>
@@ -24,7 +24,7 @@
 							<h3>Already a Reviews.co.uk Customer?</h3>
 
 							<p>To configure this plugin you need to have your API credentials, which can be found on your Reviews.co.uk dashboard.</p>
-			
+
 							<p>Log into the <strong>Dashboard</strong> and go to <strong>Integration</strong> > <strong>API</strong></p>
 
 							<p>Copy the Store ID and API Key into <strong>API Settings</strong> section of this page.</p>
@@ -39,7 +39,7 @@
                     <sort_order>0</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 				</intro>
 
                 <api translate="label">
@@ -48,7 +48,7 @@
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 					<fields>
 						<reviews_region>
 							<label>Region</label>
@@ -57,7 +57,7 @@
 							<sort_order>1</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</reviews_region>
 						<reviews_store_id>
 							<label>Store ID</label>
@@ -65,7 +65,7 @@
 							<sort_order>1</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</reviews_store_id>
 						<reviews_api_key>
 							<label>API Key</label>
@@ -73,9 +73,9 @@
 							<sort_order>2</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</reviews_api_key>
-					</fields>       
+					</fields>
                 </api>
                 <general translate="label">
                     <label>Review Collection Emails</label>
@@ -83,27 +83,27 @@
                     <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 					<fields>
 						<reviews_products_enabled>
 							<label>Queue Products Review Emails</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>2</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</reviews_products_enabled>
 						<reviews_merchant_enabled>
 							<label>Queue Merchant Review Emails</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>1</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</reviews_merchant_enabled>
-					</fields>       
+					</fields>
                 </general>
 
                 <widget translate="label">
@@ -112,16 +112,16 @@
                     <sort_order>3</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 					<fields>
 						<product_widget_enabled>
 							<label>Display Reviews Widget on Product Pages</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>4</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</product_widget_enabled>
 						<product_widget_colour>
 							<label>Widget Hex Colour</label>
@@ -133,23 +133,23 @@
 						</product_widget_colour>
                                                 <!--						<product_hide_noreviews>
 							<label>Hide widget for products with no reviews</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>5</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</product_hide_noreviews>
 						<include_jquery>
 							<label>Include jQuery (Choose yes if you're not sure)</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>6</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
                                                 </include_jquery>-->
-					</fields>       
+					</fields>
                 </widget>
                 <product_feed translate="label">
                     <label>Product Feed</label>
@@ -170,9 +170,9 @@
                         </product_feed>
                     </fields>
                     <comment>
-                        <![CDATA[
-			<p>Link to your product feed would be http://yourstoreurl/reviews/index/feed</p>
-			]]>
+                    <![CDATA[
+        			<p>To sync your products to Reviews.co.uk you should enable your product feed. The feed will be available at: http://yourstoreurl/reviews/index/feed</p>
+        			]]>
                     </comment>
                 </product_feed>
 
@@ -185,7 +185,7 @@
                     <show_in_store>1</show_in_store>
                     <fields>
                         <rich_snippet_enabled>
-                            <label>Display Rich Snippets</label>
+                            <label>Enable Merchant Rich Snippets</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -193,6 +193,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </rich_snippet_enabled>
+
+                        <product_rich_snippet_enabled>
+                            <label>Enable Product Rich Snippets</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_rich_snippet_enabled>
                     </fields>
                 </rich_snippet>
 
@@ -202,16 +212,16 @@
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 					<fields>
 						<debug>
 							<label>Log Debug/Error Messages</label>
-							<frontend_type>select</frontend_type>                                                                     
+							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>1</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>                    
+							<show_in_store>1</show_in_store>
 						</debug>
 						<reviews_use_group_product_sku>
 							<label>Use Grouped Product SKU</label>
@@ -239,7 +249,7 @@
                     <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>                
+                    <show_in_store>1</show_in_store>
 				</support>
             </groups>
         </reviewscouk_reviews_settings>
