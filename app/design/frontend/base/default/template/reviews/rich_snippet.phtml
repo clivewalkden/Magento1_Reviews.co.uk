@@ -1,7 +1,4 @@
 <!-- Rich Snippet -->
 <?php
-$enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
-if($enabled){
-    echo Mage::helper('reviewshelper')->autoRichSnippet(); 
-}
+echo Mage::helper('reviewshelper')->autoRichSnippet();
 ?>

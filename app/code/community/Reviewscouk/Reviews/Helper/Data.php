@@ -2,11 +2,19 @@
 class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function autoRichSnippet(){
-        $sku = '';
-        if(Mage::registry('current_product')){
-            $sku = $this->getProductSkus(Mage::registry('current_product'));
+        $merchant_enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
+        $product_enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/product_rich_snippet_enabled', Mage::app()->getStore());
+
+        $current_product = Mage::registry('current_product');
+
+        if($current_product && $product_enabled){
+            $sku = $this->getProductSkus($current_product);
+            return $this->getRichSnippet($sku);
         }
-        return $this->getRichSnippet($sku);
+        elseif($merchant_enabled){
+            return $this->getRichSnippet();
+        }
+        return '';
     }
 
     public function getRichSnippet($sku=null){

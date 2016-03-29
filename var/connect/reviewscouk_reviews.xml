@@ -1,5 +1,5 @@
 <_>
-   <form_key>v0cpZMo4O01ej3uH</form_key>
+   <form_key>LLRNR7QY63OhjvaU</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.6.1</version>
+   <version>0.7.0</version>
    <stability>stable</stability>
-   <notes>BugFix for Rich Snippet - Wasn&apos;t Displaying on Themes</notes>
+   <notes>Change Rich Snippet to use JSON_LD Format.</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                 </files>
+            <files>                                                                  </files>
          </files>
       </package>
       <extension>
@@ -102,4 +102,8 @@
          <ignore/>
       </ignore>
    </contents>
+   <page>1</page>
+   <limit>200</limit>
+   <folder/>
+   <package/>
 </_>
