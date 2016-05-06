@@ -26,7 +26,7 @@ class Reviewscouk_Reviews_Model_Api extends Mage_Core_Model_Abstract
 
         $ch = curl_init($url . "?" . $queryString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 
         return curl_exec($ch);
     }
