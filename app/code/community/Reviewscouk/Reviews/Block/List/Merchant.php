@@ -8,6 +8,8 @@ class Reviewscouk_Reviews_Block_List_Merchant extends Mage_Core_Block_Template
 
     public function __construct()
     {
+        $this->setCacheLifetime(3600);
+
         $this->_apiModel = Mage::getModel('reviewsmodel/api_merchant');
     }
 
