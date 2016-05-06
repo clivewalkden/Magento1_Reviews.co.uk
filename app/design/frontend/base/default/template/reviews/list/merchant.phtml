@@ -1,0 +1,54 @@
+<?php
+/**
+ * $this Reviewscouk_Block_List_Merchant
+ */
+
+$reviews = $this->getMerchantReviews();
+?>
+<p>Our overall rating is <?php echo $this->getAverageRating(); ?></p>
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Score</th>
+        <th>Customer Comment</th>
+        <th>Supplier Response</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($reviews as $review) {
+        ?>
+        <tr>
+            <td width="110"><?php echo $review->timeago; ?></td>
+            <td width="110"><?php echo $review->reviewer->first_name . ' ' . $review->reviewer->last_name; ?></td>
+            <td width="126">
+                <!-- Rating is <?php echo $review->rating; ?> -->
+                <?php echo $this->getStars($review->rating); ?>
+            </td>
+            <td width="260"><?php echo $review->comments; ?></td>
+            <td>
+                <?php foreach($review->replies as $reply) {
+                    if($reply->user_type == 'store') {
+                       echo $reply->comments;
+                    }
+                } ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th style="text-align:right;"><a
+                href="<?php echo $this->getReviewPageUrl(); ?>" target="_blank">Show
+                all reviews &nbsp; &gt;</a></th>
+    </tr>
+    </thead>
+</table>
