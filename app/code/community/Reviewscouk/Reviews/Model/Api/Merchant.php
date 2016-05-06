@@ -52,6 +52,7 @@ class Reviewscouk_Reviews_Model_Api_Merchant extends Reviewscouk_Reviews_Model_A
 
         $url = self::API_URL_MERCHANT_REVIEWS;
         $params = array(
+            'store' => $this->getApiStoreName(),
             'per_page' => 25,
             'include_replies' => 1,
             'order' => 'desc'
