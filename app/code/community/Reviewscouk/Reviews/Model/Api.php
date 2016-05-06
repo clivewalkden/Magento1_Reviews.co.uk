@@ -18,26 +18,17 @@ class Reviewscouk_Reviews_Model_Api extends Mage_Core_Model_Abstract
      */
     protected function processCurl($url, $params)
     {
-
         $paramStrings = array();
-
         foreach ($params as $param => $value) {
             $paramStrings[] = $param . '=' . $value;
         }
-
         $queryString = implode('&', $paramStrings);
 
         $ch = curl_init($url . "?" . $queryString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'store: ' . $this->getApiStoreName(),
-            'apikey: ' . $this->getApiKey()
-        ));
-
-        $data = curl_exec($ch);
-        return $data;
+        return curl_exec($ch);
     }
 
 
