@@ -6,6 +6,11 @@
         </Reviewscouk_Reviews>
     </modules>
     <global>
+        <blocks>
+            <reviewscoukreviews>
+                <class>Reviewscouk_Reviews_Block</class>
+            </reviewscoukreviews>
+        </blocks>
         <models>
             <reviewsmodel>
                 <class>Reviewscouk_Reviews_Model</class>
@@ -75,7 +80,7 @@
                 <use>standard</use>
                 <args>
                     <module>Reviewscouk_Reviews</module>
-                    <frontName>reviews</frontName>
+                    <frontName>reviewscouk</frontName>
                 </args>
             </reviews>
         </routers>
