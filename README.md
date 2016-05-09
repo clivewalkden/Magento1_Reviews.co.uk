@@ -2,13 +2,7 @@
 
 ## Development Installation
 
-- Clone this repo.
-
-- Chmod 0777 setup.sh
-
-- Run: ./setup.sh path/to/magento
-
-- This will create symlinks within magento installation
+This module can be installed with Modman. For instructions on how to do this, visit [the Modman Github page](https://github.com/colinmollenhour/modman)
 
 ## Package Extension
 
