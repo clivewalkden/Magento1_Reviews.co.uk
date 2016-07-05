@@ -82,35 +82,60 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
         $api_url = $this->getWidgetURL();
         $colour = $this->getWidgetColor();
 
+        $productWidgetVersion = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_version', $magentoStore);
+
         $productSkus = array();
         if(Mage::registry('current_product'))
         {
             $productSkus = Mage::helper('reviewshelper')->getProductSkus(Mage::registry('current_product'));
         }
 
-        ob_start();
-        ?>
-            <script src="https://<?php echo $api_url ?>/product/dist.js"></script>
-            <div id="widget"></div>
-            <script type="text/javascript">
-                productWidget("widget", {
-                    store: '<?php echo $store_id; ?>',
-                    sku: '<?php echo implode(';',$productSkus); ?>', // Multiple SKU"s Seperated by Semi-Colons
-                    primaryClr: "<?php echo $colour; ?>",
-                    neutralClr: "#EBEBEB",
-                    buttonClr: "#EEE",
-                    textClr: "#333",
-                    tabClr: "#eee",
-                    questions: true,
-                    showTabs: true,
-                    ratingStars: false,
-                    showAvatars: true
-                });
-            </script>
-        <?php
+        if($productWidgetVersion == '2'){
+            $url = 'https://widget.reviews.co.uk/product-seo/widget?store='.$store_id.'&sku='.implode(';',$productSkus).'&primaryClr='.urlencode($colour);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $widgetHtml = curl_exec($ch);
+            curl_close($ch);
+            return $widgetHtml;
+        }
+        else
+        {
+            ob_start();
+            ?>
+                <script src="https://<?php echo $api_url ?>/product/dist.js"></script>
+                <div id="widget"></div>
+                <script type="text/javascript">
+                    productWidget("widget", {
+                        store: '<?php echo $store_id; ?>',
+                        sku: '<?php echo implode(';',$productSkus); ?>', // Multiple SKU"s Seperated by Semi-Colons
+                        primaryClr: "<?php echo $colour; ?>",
+                        neutralClr: "#EBEBEB",
+                        buttonClr: "#EEE",
+                        textClr: "#333",
+                        tabClr: "#eee",
+                        questions: true,
+                        showTabs: true,
+                        ratingStars: false,
+                        showAvatars: true,
+                        translateAverage: '<?php echo $this->__("Average");?>',
+                        translateReviews: '<?php echo $this->__("Reviews");?>',
+                        translateNoReviews: '<?php echo $this->__("No Reviews");?>',
+                        translateMoreRatings: '<?php echo $this->__("More Ratings");?>',
+                        translateNoComments: '<?php echo $this->__("This review has no comments");?>',
+                        translateReplyFrom: '<?php echo $this->__("Reply from");?>',
+                        translatePosted: '<?php echo $this->__("Posted");?>',
+                        translateWriteReview: '<?php echo $this->__("Write a Review");?>',
+                        translateShow: '<?php echo $this->__("Show");?>',
+                        translateDetails: '<?php echo $this->__("Details");?>'
+                    });
+                </script>
+            <?php
 
-        $content = ob_get_contents();
-        ob_end_clean();
-        return $content;
+            $content = ob_get_contents();
+            ob_end_clean();
+            return $content;
+        }
+
     }
 }

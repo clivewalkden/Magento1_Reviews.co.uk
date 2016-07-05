@@ -131,24 +131,15 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</product_widget_colour>
-                                                <!--						<product_hide_noreviews>
-							<label>Hide widget for products with no reviews</label>
+						<product_widget_version>
+							<label>Product Widget Version</label>
 							<frontend_type>select</frontend_type>
-	                        <source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>5</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</product_hide_noreviews>
-						<include_jquery>
-							<label>Include jQuery (Choose yes if you're not sure)</label>
-							<frontend_type>select</frontend_type>
-	                        <source_model>adminhtml/system_config_source_yesno</source_model>
+							<source_model>reviewscouk_adminhtml/system_config_source_widget</source_model>
 							<sort_order>6</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
-                                                </include_jquery>-->
+						</product_widget_version>
 					</fields>
                 </widget>
                 <product_feed translate="label">
@@ -171,7 +162,7 @@
                     </fields>
                     <comment>
                     <![CDATA[
-        			<p>To sync your products to Reviews.co.uk you should enable your product feed. The feed will be available at: http://yourstoreurl/reviews/index/feed</p>
+        			<p>To sync your products to Reviews.co.uk you should enable your product feed. The feed will be available at: /reviews/index/feed and will be automatically added to your Reviews.co.uk account when you save these settings.</p>
         			]]>
                     </comment>
                 </product_feed>
@@ -214,7 +205,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
 					<fields>
-						<debug>
+						<!--<debug>
 							<label>Log Debug/Error Messages</label>
 							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -222,7 +213,7 @@
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
-						</debug>
+						</debug>-->
 						<reviews_use_group_product_sku>
 							<label>Use Grouped Product SKU</label>
 							<frontend_type>select</frontend_type>

@@ -34,7 +34,7 @@
                  <observers>
                      <sync_product_feed>
                          <class>reviewsmodel/observer</class>
-                         <method>sync_product_feed</method>
+                         <method>after_save</method>
                          <type>singleton</type>
                     </sync_product_feed>
                   </observers>
@@ -68,6 +68,15 @@
                 </reviews_admin_layout>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <reviewscouk_reviews>
+                    <files>
+                        <default>Reviewscouk_Reviews.csv</default>
+                    </files>
+                </reviewscouk_reviews>
+            </modules>
+        </translate>
     </adminhtml>
     <frontend>
         <routers>
@@ -88,6 +97,15 @@
                 </reviews_layout>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <reviewscouk_reviews>
+                    <files>
+                        <default>Reviewscouk_Reviews.csv</default>
+                    </files>
+                </reviewscouk_reviews>
+            </modules>
+        </translate>
     </frontend>
     <crontab>
         <jobs>
@@ -112,4 +130,19 @@
             </adminhtml>
         </routers>
     </admin>
+    <default>
+        <reviewscouk_reviews_settings>
+            <general>
+                <reviews_products_enabled>1</reviews_products_enabled>
+                <reviews_merchant_enabled>1</reviews_merchant_enabled>
+            </general>
+            <widget>
+                <product_widget_enabled>1</product_widget_enabled>
+                <product_widget_colour>#6ABF2B</product_widget_colour>
+            </widget>
+            <product_feed>
+                <product_feed>1</product_feed>
+            </product_feed>
+        </reviewscouk_reviews_settings>
+    </default>
 </config>

@@ -1,5 +1,5 @@
 <_>
-   <form_key>LLRNR7QY63OhjvaU</form_key>
+   <form_key>F1DxSb98UqT9AnQB</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,15 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.7.0</version>
+   <version>0.8.0</version>
    <stability>stable</stability>
-   <notes>Change Rich Snippet to use JSON_LD Format.</notes>
+   <notes>New Static Widget Option
+
+Widget Translations
+
+Automate Feed Integration
+
+Queue API Include Source Param</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -40,7 +46,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                  </files>
+            <files>                                                                         </files>
          </files>
       </package>
       <extension>
@@ -64,6 +70,8 @@
          <target>magedesign</target>
          <target>magedesign</target>
          <target>magedesign</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
       </target>
       <path>
          <path/>
@@ -73,6 +81,8 @@
          <path>adminhtml/default/default/layout/reviews_admin.xml</path>
          <path>frontend/base/default/layout/reviews_layout.xml</path>
          <path>frontend/base/default/template/reviews</path>
+         <path>en_GB/Reviewscouk_Reviews.csv</path>
+         <path>fr_FR/Reviewscouk_Reviews.csv</path>
       </path>
       <type>
          <type>file</type>
@@ -82,8 +92,12 @@
          <type>file</type>
          <type>file</type>
          <type>dir</type>
+         <type>file</type>
+         <type>file</type>
       </type>
       <include>
+         <include/>
+         <include/>
          <include/>
          <include/>
          <include/>
@@ -100,10 +114,8 @@
          <ignore/>
          <ignore/>
          <ignore/>
+         <ignore/>
+         <ignore/>
       </ignore>
    </contents>
-   <page>1</page>
-   <limit>200</limit>
-   <folder/>
-   <package/>
 </_>
