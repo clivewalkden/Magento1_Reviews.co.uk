@@ -1,0 +1,18 @@
+# Modman file for Reviewscouk_Reviews
+
+# Main module files
+app/code/community/Reviewscouk/Reviews  app/code/community/Reviewscouk/Reviews
+
+# Frontend/Admin Design files
+app/design/adminhtml/default/default/layout/reviews_admin.xml   app/design/adminhtml/default/default/layout/reviews_admin.xml
+app/design/adminhtml/default/default/template/reviews   app/design/adminhtml/default/default/template/reviews
+
+app/design/frontend/base/default/layout/reviews_layout.xml  app/design/frontend/base/default/layout/reviews_layout.xml
+app/design/frontend/base/default/template/reviews   app/design/frontend/base/default/template/reviews
+
+# Locale Files
+app/locale/en_GB/Reviewscouk_Reviews.csv    app/locale/en_GB/Reviewscouk_Reviews.csv
+app/locale/fr_FR/Reviewscouk_Reviews.csv    app/locale/fr_FR/Reviewscouk_Reviews.csv
+
+# Module File
+app/etc/modules/Reviewscouk_Reviews.xml app/etc/modules/Reviewscouk_Reviews.xml
