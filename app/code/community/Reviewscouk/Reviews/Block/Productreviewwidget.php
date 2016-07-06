@@ -20,7 +20,11 @@ class Reviewscouk_Reviews_Block_Productreviewwidget extends Reviewscouk_Reviews_
         }
     }
 
-    public function getIframeWidget() {
+    public function getStaticWidget() {
+        $store_id = $this->_configHelper->getStoreId(Mage::app()->getStore());
+        $productSkus = $this->getProductSkus();
+        $colour = $this->getWidgetColor();
+
         $url = 'https://widget.reviews.co.uk/product-seo/widget?store='.$store_id.'&sku='.implode(';',$productSkus).'&primaryClr='.urlencode($colour);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
