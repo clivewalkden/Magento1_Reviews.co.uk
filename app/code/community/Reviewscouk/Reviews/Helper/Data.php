@@ -6,7 +6,7 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function __construct()
     {
-        $this->_configHelper = Mage::helper('reviewscoouk_reviews/config');
+        $this->_configHelper = Mage::helper('reviewscouk_reviews/config');
     }
 
     public function autoRichSnippet(){

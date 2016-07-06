@@ -12,23 +12,23 @@
             </reviewscouk_reviews>
         </blocks>
         <models>
-            <reviewscoouk_reviews>
+            <reviewscouk_reviews>
                 <class>Reviewscouk_Reviews_Model</class>
-			</reviewscoouk_reviews>
+			</reviewscouk_reviews>
 			<reviewscouk_adminhtml>
 				<class>Reviewscouk_Reviews_Adminhtml_Model</class>
 			</reviewscouk_adminhtml>
         </models>
 		<helpers>
-            <reviewscoouk_reviews>
+            <reviewscouk_reviews>
                 <class>Reviewscouk_Reviews_Helper</class>
-            </reviewscoouk_reviews>
+            </reviewscouk_reviews>
         </helpers>
         <events>
             <sales_order_shipment_save_after>
                 <observers>
                     <notification>
-                        <class>reviewscoouk_reviews/observer</class>
+                        <class>reviewscouk_reviews/observer</class>
                         <method>order_shipped</method>
                         <type>singleton</type>
                    </notification>
@@ -38,7 +38,7 @@
             <admin_system_config_changed_section_reviewscouk_reviews_settings>
                  <observers>
                      <sync_product_feed>
-                         <class>reviewscoouk_reviews/observer</class>
+                         <class>reviewscouk_reviews/observer</class>
                          <method>after_save</method>
                          <type>singleton</type>
                     </sync_product_feed>
@@ -114,14 +114,14 @@
     </frontend>
     <crontab>
         <jobs>
-            <reviewscoouk_reviews>
+            <reviewscouk_reviews>
                 <schedule>
                     <cron_expr>30 2 * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>reviewscoouk_reviews/observer::createFeed</model>
+                    <model>reviewscouk_reviews/observer::createFeed</model>
                 </run>
-            </reviewscoouk_reviews>
+            </reviewscouk_reviews>
         </jobs>
     </crontab>
 	<admin>

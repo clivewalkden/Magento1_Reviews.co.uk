@@ -14,7 +14,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 	public function fetchProductReviews($page = 1)
 	{
 
-		$_configHelper = Mage::helper('reviewscoouk_reviews/config');
+		$_configHelper = Mage::helper('reviewscouk_reviews/config');
 
 		// Api Key
 		$apikey = $_configHelper->getApiKey(Mage::app()->getStore());

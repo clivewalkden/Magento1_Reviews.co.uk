@@ -5,7 +5,7 @@ class Reviewscouk_Reviews_Model_Observer
 	private $_configHelper;
 
 	public function __construct() {
-		$this->_configHelper = Mage::helper('reviewscoouk_reviews/config');
+		$this->_configHelper = Mage::helper('reviewscouk_reviews/config');
 	}
 
 	public function order_shipped(Varien_Event_Observer $observer){

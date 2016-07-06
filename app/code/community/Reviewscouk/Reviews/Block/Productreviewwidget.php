@@ -45,7 +45,7 @@ class Reviewscouk_Reviews_Block_Productreviewwidget extends Reviewscouk_Reviews_
 
         if(Mage::registry('current_product'))
         {
-            $skus = Mage::helper('reviewscoouk_reviews')->getProductSkus(Mage::registry('current_product'));
+            $skus = Mage::helper('reviewscouk_reviews')->getProductSkus(Mage::registry('current_product'));
         }
 
         return $skus;
