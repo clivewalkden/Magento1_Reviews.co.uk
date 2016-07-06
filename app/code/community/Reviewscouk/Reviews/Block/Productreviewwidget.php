@@ -10,7 +10,7 @@ class Reviewscouk_Reviews_Block_Productreviewwidget extends Reviewscouk_Reviews_
         parent::__construct();
     }
 
-    public function isInlineWidget() {
+    public function isIframeWidget() {
         $productWidgetVersion = $this->_configHelper->getProductWidgetVersion(Mage::app()->getStore());
 
         if($productWidgetVersion == '2') {
