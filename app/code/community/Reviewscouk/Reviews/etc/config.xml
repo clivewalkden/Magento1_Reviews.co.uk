@@ -6,6 +6,11 @@
         </Reviewscouk_Reviews>
     </modules>
     <global>
+        <blocks>
+            <reviewscouk_reviews>
+                <class>Reviewscouk_Reviews_Block</class>
+            </reviewscouk_reviews>
+        </blocks>
         <models>
             <reviewscoouk_reviews>
                 <class>Reviewscouk_Reviews_Model</class>
