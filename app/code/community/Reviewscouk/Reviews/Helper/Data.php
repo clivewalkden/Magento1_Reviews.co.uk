@@ -1,9 +1,16 @@
 <?php
 class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 
+    private $_configHelper;
+
+    public function __construct()
+    {
+        $this->_configHelper = Mage::helper('reviewscoouk_reviews/config');
+    }
+
     public function autoRichSnippet(){
-        $merchant_enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled', Mage::app()->getStore());
-        $product_enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/rich_snippet/product_rich_snippet_enabled', Mage::app()->getStore());
+        $merchant_enabled  = $this->_configHelper->isMerchantReviewsEnabled(Mage::app()->getStore());
+        $product_enabled  = $this->_configHelper->isProductReviewsEnabled(Mage::app()->getStore());
 
         $current_product = Mage::registry('current_product');
 
@@ -24,9 +31,9 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
 
         $cache = Mage::app()->getCache();
 
-		$apikey = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key', Mage::app()->getStore());
-		$region = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
-		$storeName = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
+		$apikey = $this->_configHelper->getApiKey(Mage::app()->getStore());
+		$region = $this->_configHelper->getRegion(Mage::app()->getStore());
+		$storeName = $this->_configHelper->getStoreId(Mage::app()->getStore());
         $url = $region == 'us'? 'https://widget.reviews.io/rich-snippet/dist.js' : 'https://widget.reviews.co.uk/rich-snippet/dist.js';
 
         $output = '<script src="'.$url.'"></script>';
@@ -62,14 +69,14 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     protected function getWidgetURL(){
-        $region   = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
+        $region   = $this->_configHelper->getRegion(Mage::app()->getStore());
         $api_url = 'widget.reviews.co.uk';
         if ($region == 'US') $api_url = 'widget.review.io';
         return $api_url;
     }
 
     protected function getWidgetColor(){
-        $colour  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_colour', Mage::app()->getStore());
+        $colour  = $this->_configHelper->getProductWidgetColour(Mage::app()->getStore());
         // people will sometimes put hash and sometimes they will forgot so we need to check for this error
         if(strpos($colour,'#') === FALSE) $colour = '#'.$colour;
         // checking to see if we hare a valid colour. If not then we change it to reviews default hex colour
@@ -78,16 +85,16 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     public function getProductWidget(){
-        $store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
+        $store_id = $this->_configHelper->getStoreId(Mage::app()->getStore());
         $api_url = $this->getWidgetURL();
         $colour = $this->getWidgetColor();
 
-        $productWidgetVersion = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_version', $magentoStore);
+        $productWidgetVersion = $this->_configHelper->getProductWidgetVersion(Mage::app()->getStore());
 
         $productSkus = array();
         if(Mage::registry('current_product'))
         {
-            $productSkus = Mage::helper('reviewshelper')->getProductSkus(Mage::registry('current_product'));
+            $productSkus = Mage::helper('reviewscoouk_reviews')->getProductSkus(Mage::registry('current_product'));
         }
 
         if($productWidgetVersion == '2'){

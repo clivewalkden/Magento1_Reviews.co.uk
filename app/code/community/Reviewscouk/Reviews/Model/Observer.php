@@ -1,6 +1,13 @@
 <?php
 class Reviewscouk_Reviews_Model_Observer
 {
+
+	private $_configHelper;
+
+	public function __construct() {
+		$this->_configHelper = Mage::helper('reviewscoouk_reviews/config');
+	}
+
 	public function order_shipped(Varien_Event_Observer $observer){
 		$shipment = $observer->getEvent()->getShipment();
 		$order = $shipment->getOrder();
@@ -8,7 +15,7 @@ class Reviewscouk_Reviews_Model_Observer
 	}
 
 	protected function getApiDomain($magento_store_id=null){
-		return $this->getRegion($magento_store_id) == 'US'? 'api.reviews.io' : 'api.reviews.co.uk';
+		return $this->_configHelper->getRegion($magento_store_id) == 'US'? 'api.reviews.io' : 'api.reviews.co.uk';
 	}
 
 	protected function apiPost($url, $data, $magento_store_id=null){
@@ -20,8 +27,8 @@ class Reviewscouk_Reviews_Model_Observer
 		$ch = curl_init($api_url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'store: '.$this->getStoreId($magento_store_id),
-			'apikey: '.$this->getApiKey($magento_store_id),
+			'store: '.$this->_configHelper->getStoreId($magento_store_id),
+			'apikey: '.$this->_configHelper->getApiKey($magento_store_id),
 			'Content-Type: application/json'
 		));
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
@@ -38,7 +45,7 @@ class Reviewscouk_Reviews_Model_Observer
 		{
 			$magento_store_id = $order->getStoreId();
 
-			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && Mage::getStoreConfig('reviewscouk_reviews_settings/general/reviews_merchant_enabled', $magento_store_id))
+			if ($this->_configHelper->getStoreId($magento_store_id) && $this->_configHelper->getApiKey($magento_store_id) && $this->_configHelper->isMerchantReviewsEnabled($magento_store_id))
 			{
 				$merchantResponse = $this->apiPost('merchant/invitation', array(
 					'source' => 'magento',
@@ -48,14 +55,14 @@ class Reviewscouk_Reviews_Model_Observer
 				), $magento_store_id);
 			}
 
-			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && Mage::getStoreConfig('reviewscouk_reviews_settings/general/reviews_products_enabled', $magento_store_id))
+			if ($this->_configHelper->getStoreId($magento_store_id) && $this->_configHelper->getApiKey($magento_store_id) && $this->_configHelper->isProductReviewsEnabled($magento_store_id))
 			{
 				$items = $order->getAllVisibleItems();
 				foreach ($items as $item)
 				{
 					$item = Mage::getModel('catalog/product')->load($item->getProductId());
 
-					if (Mage::getStoreConfig('reviewscouk_reviews_settings/advanced/reviews_use_group_product_sku', Mage::app()->getStore()))
+					if ($this->_configHelper->isUsingGroupSkus($magento_store_id))
 					{
 						// If product is part of a grouped product, use the grouped product details.
 						$parentIds = Mage::getModel('catalog/product_type_grouped')->getParentIdsByChild($item->getId());
@@ -88,22 +95,7 @@ class Reviewscouk_Reviews_Model_Observer
 		}
 	}
 
-	function getRegion($magentoStore)
-	{
-		return Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', $magentoStore);
-	}
-
-	function getApiKey($magentoStore)
-	{
-		return Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key', $magentoStore);
-	}
-
-	function getStoreId($magentoStore)
-	{
-		return Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', $magentoStore);
-	}
-
-	function createFeed()
+	public function createFeed()
 	{
 		$curl = curl_init();
 		curl_setopt_array($curl, array(

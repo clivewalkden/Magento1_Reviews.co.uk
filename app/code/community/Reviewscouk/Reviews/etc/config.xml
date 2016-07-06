@@ -7,23 +7,23 @@
     </modules>
     <global>
         <models>
-            <reviewsmodel>
+            <reviewscoouk_reviews>
                 <class>Reviewscouk_Reviews_Model</class>
-			</reviewsmodel>
+			</reviewscoouk_reviews>
 			<reviewscouk_adminhtml>
 				<class>Reviewscouk_Reviews_Adminhtml_Model</class>
 			</reviewscouk_adminhtml>
         </models>
 		<helpers>
-            <reviewshelper>
+            <reviewscoouk_reviews>
                 <class>Reviewscouk_Reviews_Helper</class>
-            </reviewshelper>
+            </reviewscoouk_reviews>
         </helpers>
         <events>
             <sales_order_shipment_save_after>
                 <observers>
                     <notification>
-                        <class>reviewsmodel/observer</class>
+                        <class>reviewscoouk_reviews/observer</class>
                         <method>order_shipped</method>
                         <type>singleton</type>
                    </notification>
@@ -33,7 +33,7 @@
             <admin_system_config_changed_section_reviewscouk_reviews_settings>
                  <observers>
                      <sync_product_feed>
-                         <class>reviewsmodel/observer</class>
+                         <class>reviewscoouk_reviews/observer</class>
                          <method>after_save</method>
                          <type>singleton</type>
                     </sync_product_feed>
@@ -109,14 +109,14 @@
     </frontend>
     <crontab>
         <jobs>
-            <reviewsmodel>
+            <reviewscoouk_reviews>
                 <schedule>
                     <cron_expr>30 2 * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>reviewsmodel/observer::createFeed</model>
+                    <model>reviewscoouk_reviews/observer::createFeed</model>
                 </run>
-            </reviewsmodel>
+            </reviewscoouk_reviews>
         </jobs>
     </crontab>
 	<admin>

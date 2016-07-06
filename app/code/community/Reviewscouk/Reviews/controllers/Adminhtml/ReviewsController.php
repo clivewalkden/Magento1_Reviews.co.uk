@@ -14,14 +14,16 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 	public function fetchProductReviews($page = 1)
 	{
 
+		$_configHelper = Mage::helper('reviewscoouk_reviews/config');
+
 		// Api Key
-		$apikey = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key', Mage::app()->getStore());
+		$apikey = $_configHelper->getApiKey(Mage::app()->getStore());
 
 		// Get Region
-		$region = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region', Mage::app()->getStore());
+		$region = $_configHelper->getRegion(Mage::app()->getStore());
 
 		// Get store
-		$storeName = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store_id', Mage::app()->getStore());
+		$storeName = $_configHelper->getStoreId(Mage::app()->getStore());
 
 		if (empty($storeName))
 		{

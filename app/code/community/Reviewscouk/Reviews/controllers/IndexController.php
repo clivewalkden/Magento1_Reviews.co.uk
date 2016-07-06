@@ -16,7 +16,8 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 	 */
 	public function feedAction()
 	{
-		$productFeedEnabled = Mage::getStoreConfig('reviewscouk_reviews_settings/product_feed/product_feed');
+		$_configHelper = Mage::helper('reviewscoouk_reviews/config');
+		$productFeedEnabled = $_configHelper->isProductFeedEnabled(Mage::app()->getStore());
 		if ($productFeedEnabled)
 		{
 			$cache = Mage::app()->getCache();

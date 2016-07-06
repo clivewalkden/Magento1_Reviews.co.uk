@@ -3,26 +3,26 @@
     <menu>
         <catalog>
             <children>
-                <reviewstab module="reviewshelper" translate="title">
+                <reviewstab module="reviewscoouk_reviews" translate="title">
                     <title>Reviews.co.uk</title>
                     <sort_order>55</sort_order>
                     <children>
-                        <dashboard module="reviewshelper" translate="title">
+                        <dashboard module="reviewscoouk_reviews" translate="title">
                             <title>Dashboard</title>
                             <sort_order>1</sort_order>
                             <action>adminhtml/reviews/dashboard</action>
                         </dashboard>
-                        <export module="reviewshelper" translate="title">
+                        <export module="reviewscoouk_reviews" translate="title">
                             <title>Export Magento Reviews</title>
                             <sort_order>2</sort_order>
                             <action>adminhtml/reviews/export</action>
                         </export>
-                        <sync module="reviewshelper" translate="title">
+                        <sync module="reviewscoouk_reviews" translate="title">
                             <title>Sync Reviews into Magento</title>
                             <sort_order>2</sort_order>
                             <action>adminhtml/reviews/sync</action>
                         </sync>
-                        <booster module="reviewshelper" translate="title">
+                        <booster module="reviewscoouk_reviews" translate="title">
                             <title>Review Booster CSV</title>
                             <sort_order>4</sort_order>
                             <action>adminhtml/reviews/booster</action>
@@ -38,7 +38,7 @@
                 <children>
                     <catalog>
                         <children>
-                            <reviews translate="title" module="reviewshelper">
+                            <reviews translate="title" module="reviewscoouk_reviews">
                                 <title>Reviews.co.uk</title>
                                 <sort_order>-100</sort_order>
                                 <children>
