@@ -36,24 +36,28 @@
         <resources>
             <admin>
                 <children>
-                    <reviews translate="title" module="reviewshelper">
-                        <title>Reviews.co.uk</title>
-                        <sort_order>-100</sort_order>
-						<children>
-					          <dashboard translate="title">
-                                <title>Dashboard</title>
-                                <sort_order>1</sort_order>
-                            </dashboard>
-                            <export translate="title">
-                                <title>Export Magento Reviews</title>
-                                <sort_order>2</sort_order>
-							</export>
-							<doexport translate="title">
-                                <title>Do Export Magento Reviews</title>
-                                <sort_order>2</sort_order>
-                            </doexport>
+                    <catalog>
+                        <children>
+                            <reviews translate="title" module="reviewshelper">
+                                <title>Reviews.co.uk</title>
+                                <sort_order>-100</sort_order>
+                                <children>
+                                    <dashboard translate="title">
+                                        <title>Dashboard</title>
+                                        <sort_order>1</sort_order>
+                                    </dashboard>
+                                    <export translate="title">
+                                        <title>Export Magento Reviews</title>
+                                        <sort_order>2</sort_order>
+                                    </export>
+                                    <doexport translate="title">
+                                        <title>Do Export Magento Reviews</title>
+                                        <sort_order>2</sort_order>
+                                    </doexport>
+                                </children>
+                            </reviews>
                         </children>
-                    </reviews>
+                    </catalog>
                 </children>
             </admin>
         </resources>
