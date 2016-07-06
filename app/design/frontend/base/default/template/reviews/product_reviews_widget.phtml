@@ -4,7 +4,6 @@ if ($this->isProductWidgetEnabled()){
         //echo $this->getProductWidget();
         $_data = $this->getData();
         ?>
-        IFRAME
         <script src="https://<?php echo $_data['api_url']; ?>/product/dist.js"></script>
         <div id="widget"></div>
         <script type="text/javascript">
@@ -34,7 +33,6 @@ if ($this->isProductWidgetEnabled()){
         </script>
         <?php
     } else {
-        echo "STATIC";
         echo $this->getStaticWidget();
     }
 }
