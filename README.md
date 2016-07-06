@@ -41,7 +41,13 @@ Automatically pull through product specific reviews directly onto your product p
 
 ### Rich Snippets
 
-The Reviews.co.uk Magento modules allows you to automatically include structured Rich Snippet data on your pages. This data is used by search engines to better understand the content of your pages. Search engines also often use this data to improve the content of results on a Search Engine Result Page (SERP). You can find out more information [here])https://developers.google.com/search/docs/guides/intro-structured-data)
+The Reviews.co.uk Magento modules allows you to automatically include structured Rich Snippet data on your pages. This data is used by search engines to better understand the content of your pages. Search engines also often use this data to improve the content of results on a Search Engine Result Page (SERP). You can find out more information [here](https://developers.google.com/search/docs/guides/intro-structured-data)
+
+To enable Rich Snippets;
+
+1. Navigate to  _System -> Configuration -> Reviews.co.uk -> Setup_
+2. To enable Rich Snippets containing Merchant review data, set __Enable Merchant Rich Snippets__ under _Rich Snippets_ to _Yes_
+3. To enable Rich Snippets containing Product review data, set __Enable Product Rich Snippets__ under _Rich Snippets_ to _Yes_
 
 ### Product Feed
 
