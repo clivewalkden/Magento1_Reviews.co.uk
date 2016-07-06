@@ -8,6 +8,7 @@ class Reviewscouk_Reviews_Helper_Config extends Mage_Core_Helper_Abstract {
     const XML_CONFIG_REVIEWS_REGION = "reviewscouk_reviews_settings/api/reviews_region";
     const XML_CONFIG_API_KEY = 'reviewscouk_reviews_settings/api/reviews_api_key';
     const XML_CONFIG_STORE_ID = 'reviewscouk_reviews_settings/api/reviews_store_id';
+    const XML_CONFIG_PRODUCT_WIDGET_ENABLED = 'reviewscouk_reviews_settings/widget/product_widget_enabled';
     const XML_CONFIG_PRODUCT_WIDGET_VERSION = 'reviewscouk_reviews_settings/widget/product_widget_version';
     const XML_CONFIG_PRODUCT_WIDGET_COLOUR = 'reviewscouk_reviews_settings/widget/product_widget_colour';
     const XML_CONFIG_MERCHANT_REVIEWS_ENABLED = 'reviewscouk_reviews_settings/general/reviews_merchant_enabled';
@@ -36,6 +37,10 @@ class Reviewscouk_Reviews_Helper_Config extends Mage_Core_Helper_Abstract {
         return $this->getValue(self::XML_CONFIG_PRODUCT_WIDGET_COLOUR, $magentoStore);
     }
 
+    public function isProductWidgetEnabled($magentoStore) {
+        return $this->getValue(self::XML_CONFIG_PRODUCT_WIDGET_ENABLED, $magentoStore);
+    }
+
     public function isUsingGroupSkus($magentoStore) {
         return $this->getValue(self::XML_CONFIG_USE_GROUP_SKU, $magentoStore);
     }
@@ -44,12 +49,12 @@ class Reviewscouk_Reviews_Helper_Config extends Mage_Core_Helper_Abstract {
         return $this->getValue(self::XML_CONFIG_MERCHANT_REVIEWS_ENABLED, $magentoStore);
     }
 
-    public function isProductFeedEnabled($magentoStore) {
-        return $this->getValue(self::XML_CONFIG_PRODUCT_FEED_ENABLED, $magentoStore);
-    }
-
     public function isProductReviewsEnabled($magentoStore) {
         return $this->getValue(self::XML_CONFIG_PRODUCT_REVIEWS_ENABLED, $magentoStore);
+    }
+
+    public function isProductFeedEnabled($magentoStore) {
+        return $this->getValue(self::XML_CONFIG_PRODUCT_FEED_ENABLED, $magentoStore);
     }
 
 
