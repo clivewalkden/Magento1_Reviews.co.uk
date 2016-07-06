@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <menu>
-        <reviewstab module="reviewshelper" translate="title">
-            <title>Reviews</title>
-            <sort_order>100</sort_order>
-			<children>
-                <dashboard module="reviewshelper" translate="title">
-                    <title>Dashboard</title>
-                    <sort_order>1</sort_order>
-		            <action>adminhtml/reviews/dashboard</action>
-                </dashboard>
-                <export module="reviewshelper" translate="title">
-                    <title>Export Magento Reviews</title>
-                    <sort_order>2</sort_order>
-                    <action>adminhtml/reviews/export</action>
-                </export>
-                <sync module="reviewshelper" translate="title">
-                    <title>Sync Reviews into Magento</title>
-                    <sort_order>2</sort_order>
-                    <action>adminhtml/reviews/sync</action>
-                </sync>
-                <booster module="reviewshelper" translate="title">
-                    <title>Review Booster CSV</title>
-                    <sort_order>4</sort_order>
-                    <action>adminhtml/reviews/booster</action>
-                </booster>
+        <catalog>
+            <children>
+                <reviewstab module="reviewshelper" translate="title">
+                    <title>Reviews.co.uk</title>
+                    <sort_order>55</sort_order>
+                    <children>
+                        <dashboard module="reviewshelper" translate="title">
+                            <title>Dashboard</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/reviews/dashboard</action>
+                        </dashboard>
+                        <export module="reviewshelper" translate="title">
+                            <title>Export Magento Reviews</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/reviews/export</action>
+                        </export>
+                        <sync module="reviewshelper" translate="title">
+                            <title>Sync Reviews into Magento</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/reviews/sync</action>
+                        </sync>
+                        <booster module="reviewshelper" translate="title">
+                            <title>Review Booster CSV</title>
+                            <sort_order>4</sort_order>
+                            <action>adminhtml/reviews/booster</action>
+                        </booster>
+                    </children>
+                </reviewstab>
             </children>
-        </reviewstab>
+        </catalog>
     </menu>
     <acl>
         <resources>
