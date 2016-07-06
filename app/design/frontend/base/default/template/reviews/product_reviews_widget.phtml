@@ -1,5 +1,4 @@
 <?php
-$enabled  = Mage::getStoreConfig('reviewscouk_reviews_settings/widget/product_widget_enabled', Mage::app()->getStore());
-if ($enabled){
+if ($this->isProductWidgetEnabled()){
     echo Mage::helper('reviewscoouk_reviews')->getProductWidget();
 }
