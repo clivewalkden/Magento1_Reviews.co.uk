@@ -39,6 +39,14 @@ class Reviewscouk_Reviews_Model_Observer
 		return $response;
 	}
 
+	private function addStatusMessage($object, $task) {
+		$object = json_decode($object);
+		var_dump($object);
+		if($object->status == 'error') {
+			Mage::getSingleton('core/session')->addError($task . ' Error: ' . $object->message);
+		}
+	}
+
 	public function dispatch_notification($order)
 	{
 		try
@@ -53,6 +61,7 @@ class Reviewscouk_Reviews_Model_Observer
 					'email' => $order->getCustomerEmail(),
 					'order_id' => $order->getRealOrderId(),
 				), $magento_store_id);
+				$this->addStatusMessage($merchantResponse, "Merchant Review Invitation");
 			}
 
 			if ($this->_configHelper->getStoreId($magento_store_id) && $this->_configHelper->getApiKey($magento_store_id) && $this->_configHelper->isProductReviewsEnabled($magento_store_id))
@@ -88,6 +97,8 @@ class Reviewscouk_Reviews_Model_Observer
 					'order_id' => $order->getRealOrderId(),
 					'products' => $p
 				), $magento_store_id);
+				$this->addStatusMessage($productResponse, "Product Review Invitation");
+
 			}
 		}
 		catch (Exception $e)
@@ -110,14 +121,17 @@ class Reviewscouk_Reviews_Model_Observer
 	}
 
 	public function after_save(){
-		$this->apiPost('integration/set-feed', array(
+		$setFeed = $this->apiPost('integration/set-feed', array(
 			'url' => Mage::getBaseUrl().'reviews/index/feed',
 			'format' => 'xml'
 		));
+		$this->addStatusMessage($setFeed, "Syncing Product Feed Configuration");
 
-		$this->apiPost('integration/app-installed', array(
+		$appInstalled = $this->apiPost('integration/app-installed', array(
 			'platform' => 'magento',
 			'url' => isset($_SERVER['HTTP_HOST'])? $_SERVER['HTTP_HOST'] : ''
 		));
+		$this->addStatusMessage($appInstalled, "Communication");
+
 	}
 }
