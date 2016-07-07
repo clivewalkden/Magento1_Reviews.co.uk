@@ -10,9 +10,8 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     public function autoRichSnippet(){
-        $merchant_enabled  = $this->_configHelper->isMerchantReviewsEnabled(Mage::app()->getStore());
-        $product_enabled  = $this->_configHelper->isProductReviewsEnabled(Mage::app()->getStore());
-
+        $merchant_enabled  = $this->_configHelper->isMerchantRichSnippetsEnabled(Mage::app()->getStore());
+        $product_enabled  = $this->_configHelper->isProductRichSnippetsEnabled(Mage::app()->getStore());
         $current_product = Mage::registry('current_product');
 
         if($current_product && $product_enabled){

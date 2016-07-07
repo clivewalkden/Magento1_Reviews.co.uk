@@ -13,6 +13,8 @@ class Reviewscouk_Reviews_Helper_Config extends Mage_Core_Helper_Abstract {
     const XML_CONFIG_PRODUCT_WIDGET_COLOUR = 'reviewscouk_reviews_settings/widget/product_widget_colour';
     const XML_CONFIG_MERCHANT_REVIEWS_ENABLED = 'reviewscouk_reviews_settings/general/reviews_merchant_enabled';
     const XML_CONFIG_PRODUCT_REVIEWS_ENABLED = 'reviewscouk_reviews_settings/general/reviews_products_enabled';
+    const XML_CONFIG_MERCHANT_RICH_SNIPPETS_ENABLED = 'reviewscouk_reviews_settings/rich_snippet/rich_snippet_enabled';
+    const XML_CONFIG_PRODUCT_RICH_SNIPPETS_ENABLED = 'reviewscouk_reviews_settings/rich_snippet/product_rich_snippet_enabled';
     const XML_CONFIG_PRODUCT_FEED_ENABLED = 'reviewscouk_reviews_settings/product_feed/product_feed';
     const XML_CONFIG_USE_GROUP_SKU = "reviewscouk_reviews_settings/advanced/reviews_use_group_product_sku";
 
@@ -51,6 +53,14 @@ class Reviewscouk_Reviews_Helper_Config extends Mage_Core_Helper_Abstract {
 
     public function isProductReviewsEnabled($magentoStore) {
         return $this->getValue(self::XML_CONFIG_PRODUCT_REVIEWS_ENABLED, $magentoStore);
+    }
+
+    public function isMerchantRichSnippetsEnabled($magentoStore) {
+        return $this->getValue(self::XML_CONFIG_MERCHANT_RICH_SNIPPETS_ENABLED, $magentoStore);
+    }
+
+    public function isProductRichSnippetsEnabled($magentoStore) {
+        return $this->getValue(self::XML_CONFIG_PRODUCT_RICH_SNIPPETS_ENABLED, $magentoStore);
     }
 
     public function isProductFeedEnabled($magentoStore) {
