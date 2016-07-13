@@ -34,7 +34,7 @@ class Reviewscouk_Reviews_Block_Productreviewwidget extends Reviewscouk_Reviews_
         return $widgetHtml;
     }
 
-    public function getData() {
+    public function getSettings() {
         $data = array(
             'store_id' => $this->_configHelper->getStoreId(Mage::app()->getStore()),
             'api_url' => $this->getWidgetURL(),
@@ -44,7 +44,7 @@ class Reviewscouk_Reviews_Block_Productreviewwidget extends Reviewscouk_Reviews_
         return $data;
     }
 
-    protected function getProductSkus() {
+    public function getProductSkus() {
         $skus = array();
 
         if(Mage::registry('current_product'))
