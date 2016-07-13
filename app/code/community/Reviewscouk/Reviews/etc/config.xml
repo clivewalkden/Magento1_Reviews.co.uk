@@ -93,8 +93,6 @@
                 </args>
             </reviews>
         </routers>
-    </frontend>
-    <frontend>
         <layout>
             <updates>
                 <reviews_layout module="Reviews_Layout">
