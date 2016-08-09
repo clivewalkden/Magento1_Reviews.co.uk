@@ -11,7 +11,9 @@
    <license_uri/>
    <version>0.8.2</version>
    <stability>stable</stability>
-   <notes>Remove Sync Action</notes>
+   <notes>- Remove Sync Action
+
+- Change Review.io to Reviews.io</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -40,7 +42,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                           </files>
+            <files>                                                                            </files>
          </files>
       </package>
       <extension>
