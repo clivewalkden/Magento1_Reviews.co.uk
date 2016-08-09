@@ -1,5 +1,5 @@
 <_>
-   <form_key>F1DxSb98UqT9AnQB</form_key>
+   <form_key>iAVfE9sFRen0BFQY</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,15 +9,9 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.8.0</version>
+   <version>0.8.2</version>
    <stability>stable</stability>
-   <notes>New Static Widget Option
-
-Widget Translations
-
-Automate Feed Integration
-
-Queue API Include Source Param</notes>
+   <notes>Remove Sync Action</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -46,7 +40,7 @@ Queue API Include Source Param</notes>
             <max/>
          </max>
          <files>
-            <files>                                                                         </files>
+            <files>                                                                           </files>
          </files>
       </package>
       <extension>

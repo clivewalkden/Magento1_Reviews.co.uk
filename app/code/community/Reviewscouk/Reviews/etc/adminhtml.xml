@@ -2,6 +2,7 @@
 <config>
     <menu>
         <reviewstab module="reviewshelper" translate="title">
+
             <title>Reviews</title>
             <sort_order>100</sort_order>
 			<children>
@@ -20,11 +21,6 @@
                     <sort_order>2</sort_order>
                     <action>adminhtml/reviews/export</action>
                 </export>
-                <sync module="reviewshelper" translate="title">
-                    <title>Sync Reviews into Magento</title>
-                    <sort_order>2</sort_order>
-                    <action>adminhtml/reviews/sync</action>
-                </sync>
                 <booster module="reviewshelper" translate="title">
                     <title>Review Booster CSV</title>
                     <sort_order>4</sort_order>
