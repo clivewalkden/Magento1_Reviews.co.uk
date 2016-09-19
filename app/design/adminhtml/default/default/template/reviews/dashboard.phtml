@@ -3,10 +3,7 @@ $store_id = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_store
 $apikey = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_api_key');
 $region = Mage::getStoreConfig('reviewscouk_reviews_settings/api/reviews_region');
 
-$url = 'https://dash.reviews.co.uk';
-if($region == 'US'){
-	$url = 'https://dash.review.io';	
-}
+$url = Mage::helper('reviewshelper')->getReviewsUrl('dash');
 ?>
 
 <iframe src="<?php echo $url; ?>/login/api?store=<?php echo $store_id;?>&apikey=<?php echo $apikey; ?>" style="border:3px solid green;height:600px;width:100%;"></iframe>

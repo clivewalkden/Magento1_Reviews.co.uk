@@ -30,9 +30,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 
 		try
 		{
-			$url = "http://api.reviews.co.uk";
-			if ($region == 'US') $url = "http://api.review.io"; // Checking if Region is US or not
-			$url .= "/product/reviews/all?store=" . $storeName . "&apikey=" . $apikey . "&page=" . $page;
+			$url = Mage::helper('reviewshelper')->getReviewsUrl('api')."/product/reviews/all?store=" . $storeName . "&apikey=" . $apikey . "&page=" . $page;
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -62,6 +60,10 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 		}
 	}
 
+	/*
+	 * Depreciated: Sync Reviews from Reviews.co.uk into Magento Default Review System
+	 * Currently Not Accessible to Avoid Confusion - Not Really Necessary with Static Widget Available
+	 */
 	public function syncAction()
 	{
 		// Getting the Store ID
@@ -364,7 +366,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 			// Add the character to the result string.
 			$result .= $char;
 
-			// If the last character was the beginning of an element, 
+			// If the last character was the beginning of an element,
 			// output a new line and indent the next line.
 			if (($char == ',' || $char == '{' || $char == '[') && $outOfQuotes)
 			{

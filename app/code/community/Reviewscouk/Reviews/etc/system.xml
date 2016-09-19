@@ -85,24 +85,15 @@
 					<show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
 					<fields>
-						<reviews_products_enabled>
-							<label>Queue Products Review Emails</label>
+						<reviews_invitations_enabled>
+							<label>Queue Review Invitations When Orders Are Shipped (via API)</label>
 							<frontend_type>select</frontend_type>
 	                        <source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>2</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
-						</reviews_products_enabled>
-						<reviews_merchant_enabled>
-							<label>Queue Merchant Review Emails</label>
-							<frontend_type>select</frontend_type>
-	                        <source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>1</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</reviews_merchant_enabled>
+						</reviews_invitations_enabled>
 					</fields>
                 </general>
 
@@ -123,10 +114,19 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</product_widget_enabled>
+						<rating_snippet_enabled>
+							<label>Display Rating Stars on Category Pages</label>
+							<frontend_type>select</frontend_type>
+	                        <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</rating_snippet_enabled>
 						<product_widget_colour>
 							<label>Widget Hex Colour</label>
 							<frontend_type>text</frontend_type>
-							<sort_order>5</sort_order>
+							<sort_order>6</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
@@ -135,11 +135,12 @@
 							<label>Product Widget Version</label>
 							<frontend_type>select</frontend_type>
 							<source_model>reviewscouk_adminhtml/system_config_source_widget</source_model>
-							<sort_order>6</sort_order>
+							<sort_order>7</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</product_widget_version>
+
 					</fields>
                 </widget>
                 <product_feed translate="label">
@@ -175,7 +176,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <rich_snippet_enabled>
+                        <!--<rich_snippet_enabled>
                             <label>Enable Merchant Rich Snippets</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -183,7 +184,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </rich_snippet_enabled>
+                        </rich_snippet_enabled>-->
 
                         <product_rich_snippet_enabled>
                             <label>Enable Product Rich Snippets</label>
@@ -205,17 +206,8 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
 					<fields>
-						<!--<debug>
-							<label>Log Debug/Error Messages</label>
-							<frontend_type>select</frontend_type>
-	                        <source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>1</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</debug>-->
 						<reviews_use_group_product_sku>
-							<label>Use Grouped Product SKU</label>
+							<label>Queue Invitations Using Grouped or Configurable SKU</label>
 							<frontend_type>select</frontend_type>
 							<source_model>adminhtml/system_config_source_yesno</source_model>
 							<sort_order>2</sort_order>
@@ -224,6 +216,15 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</reviews_use_group_product_sku>
+
+						<product_widget_css>
+							<label>Javascript Product Widget Custom CSS</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_widget_css>
 					</fields>
                 </advanced>
 	             <support translate="label">

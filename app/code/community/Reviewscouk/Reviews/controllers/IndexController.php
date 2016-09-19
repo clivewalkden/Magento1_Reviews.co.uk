@@ -53,11 +53,7 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 							<g:brand><![CDATA[" . $brand . "]]></g:brand>
 							<g:mpn><![CDATA[" . $product->getSku() . "]]></g:mpn>
 							<g:product_type><![CDATA[" . $product->getTypeID() . "]]></g:product_type>
-							<g:shipping>
-							<g:country>UK</g:country>
-							<g:service>Standard Free Shipping</g:service>
-							<g:price>0 GBP</g:price>
-							</g:shipping>";
+							";
 
 					$categoryCollection = $product->getCategoryCollection();
 					if (count($categoryCollection) > 0)
@@ -90,6 +86,7 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 				$productFeed = $saveCached;
 			}
 
+			header('Content-Type: text/xml');
 			echo $productFeed;
 			exit();
 		}

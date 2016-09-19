@@ -40,6 +40,17 @@
                   </observers>
             </admin_system_config_changed_section_reviewscouk_reviews_settings>
         </events>
+		<blocks>
+			<catalog>
+				<rewrite>
+					<product_list>Reviewscouk_Reviews_Block_Product_List</product_list>
+					<product_view>Reviewscouk_Reviews_Block_Product_View</product_view>
+				</rewrite>
+			</catalog>
+			<reviews>
+				<class>Reviewscouk_Reviews_Block_Reviews</class>
+			</reviews>
+		</blocks>
     </global>
     <adminhtml>
         <acl>
@@ -133,13 +144,16 @@
     <default>
         <reviewscouk_reviews_settings>
             <general>
-                <reviews_products_enabled>1</reviews_products_enabled>
-                <reviews_merchant_enabled>1</reviews_merchant_enabled>
+                <reviews_invitations_enabled>1</reviews_invitations_enabled>
             </general>
             <widget>
                 <product_widget_enabled>1</product_widget_enabled>
                 <product_widget_colour>#6ABF2B</product_widget_colour>
+                <rating_snippet_enabled>1</rating_snippet_enabled>
             </widget>
+            <rich_snippet>
+                <product_rich_snippet_enabled>1</product_rich_snippet_enabled>
+            </rich_snippet>
             <product_feed>
                 <product_feed>1</product_feed>
             </product_feed>
