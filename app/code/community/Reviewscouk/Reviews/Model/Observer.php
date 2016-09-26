@@ -27,7 +27,7 @@ class Reviewscouk_Reviews_Model_Observer
 			$magento_store_id = Mage::app()->getStore();
 		}
 
-		$api_url = $this->helper->getReviewsUrl('api', $magento_store_id).'/'.$url;
+		$api_url = $this->helper->getReviewsUrl('api', $magento_store_id).$url;
 		$ch = curl_init($api_url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(

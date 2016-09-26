@@ -37,13 +37,21 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
      * Product Parameter: Mage::registry('current_product')
      */
     public function getProductSkus($product){
-        $sku      = $product->getSku();
+        $sku = $product->getSku();
+
+    	// In Catalog > Attributes > Manager Attributes if sku is not set to 'Used in Product Listing' then SKU may not be available, so reload product in this case.
+        // Its probably more optimal to enable the option above
+        if(empty($sku)){
+    		$product = Mage::getModel('catalog/product')->load($product->getId());
+    		$sku = $product->getSku();
+    	}
+
         $type = $product->getTypeID();
 
         $productSkus = array($sku);
 
         if($type == 'configurable'){
-            $usedProducts = $product->getTypeInstance() ->getUsedProducts();
+            $usedProducts = $product->getTypeInstance()->getUsedProducts();
             foreach($usedProducts as $usedProduct){
                 $productSkus[] = $usedProduct->getSku();
             }
@@ -115,8 +123,11 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
         }
     }
 
+    /*
+     * Request the Code for the static product widget via curl
+     */
     public function getStaticProductWidget($sku){
-        $url = $this->getReviewsUrl('widget').'/product-seo/widget?store='.$this->getStoreName().'&sku='.$sku.'&primaryClr='.urlencode($this->getWidgetColor());
+        $url = $this->getReviewsUrl('widget').'product-seo/widget?store='.$this->getStoreName().'&sku='.$sku.'&primaryClr='.urlencode($this->getWidgetColor());
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -125,6 +136,9 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
         return $widgetHtml;
     }
 
+    /*
+     * Remove Newlines and Escape Quotes in Custom Widget CSS
+     */
     protected function prepareCss($css){
         $css = str_replace("\n",'', $css);
         $css = str_replace("\r",'', $css);
@@ -132,6 +146,9 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
         return $css;
     }
 
+    /*
+     * Generate the code for the Javascript product widget
+     */
     public function getJavascriptProductWidget($sku){
         ob_start();
         ?>

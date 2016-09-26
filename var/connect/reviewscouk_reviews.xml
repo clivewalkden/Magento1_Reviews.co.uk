@@ -1,5 +1,5 @@
 <_>
-   <form_key>iAVfE9sFRen0BFQY</form_key>
+   <form_key>QHAi2on8c5Qec8gE</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,11 +9,13 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.8.2</version>
+   <version>0.9.1</version>
    <stability>stable</stability>
-   <notes>- Remove Sync Action
+   <notes>Bug Fixes
 
-- Change Review.io to Reviews.io</notes>
+- Reload product for rating snippet when SKU is not included in product listing
+
+- Remove double slash (//) in widget URL&apos;s.</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -42,7 +44,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                            </files>
+            <files>                                                                              </files>
          </files>
       </package>
       <extension>

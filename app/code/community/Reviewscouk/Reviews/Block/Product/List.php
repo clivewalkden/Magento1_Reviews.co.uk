@@ -1,6 +1,9 @@
 <?php
 class Reviewscouk_Reviews_Block_Product_List extends Mage_Catalog_Block_Product_List {
 
+    /*
+     * Load the helper
+     */
     public function __construct(){
         parent::__construct();
         $this->helper = Mage::helper('reviewshelper');
