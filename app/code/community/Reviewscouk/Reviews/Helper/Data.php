@@ -106,11 +106,21 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     /*
+     * Return Collector Url for Product
+     */
+    public function getProductCollectorUrl($product=null){
+        $product = $product? $product : Mage::registry('current_product');
+        $productSkus = implode(';',$this->getProductSkus($product));
+        return $this->getReviewsUrl('collector').'product-review/'.$this->getStoreName().'/'. $productSkus;
+    }
+
+    /*
      * Generate Code for the Product Reviews widget
      */
-    public function getProductWidget($product){
+    public function getProductWidget($product=null){
+        $product = $product? $product : Mage::registry('current_product');
 
-        $productSkus = $product? $this->getProductSkus($product) : array();
+        $productSkus = $this->getProductSkus($product);
 
         $sku = implode(';', $productSkus);
 
