@@ -49,7 +49,7 @@ class Reviewscouk_Reviews_Model_Observer
 		{
 			$magento_store_id = $order->getStoreId();
 
-			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && $this->helper->areInvitationsEnabled())
+			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && $this->helper->areInvitationsEnabled($magento_store_id))
 			{
 				$merchantResponse = $this->apiPost('merchant/invitation', array(
 					'source' => 'magento',

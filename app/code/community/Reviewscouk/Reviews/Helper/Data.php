@@ -14,21 +14,21 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     /*
      * Get Store Name from Config
      */
-    public function getStoreName(){
-		return $this->config('api/reviews_store_id');
+    public function getStoreName($magento_store_id=null){
+		return $this->config('api/reviews_store_id', $magento_store_id);
     }
 
     /*
      * Get API Key From Config
      */
-    public function getApiKey(){
-		return $this->config('api/reviews_api_key');
+    public function getApiKey($magento_store_id=null){
+		return $this->config('api/reviews_api_key', $magento_store_id);
     }
 
     /*
      * Are Invitations Enabled
      */
-    public function areInvitationsEnabled(){
+    public function areInvitationsEnabled($magento_store_id=null){
         return $this->config('general/reviews_invitations_enabled', $magento_store_id);
     }
 
@@ -96,8 +96,8 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     /*
      * Prepare and Return Widget Color as set in Config
      */
-    public function getWidgetColor(){
-        $colour  = $this->config('widget/product_widget_colour');
+    public function getWidgetColor($store=null){
+        $colour  = $this->config('widget/product_widget_colour', $store);
         // people will sometimes put hash and sometimes they will forgot so we need to check for this error
         if(strpos($colour,'#') === FALSE) $colour = '#'.$colour;
         // checking to see if we hare a valid colour. If not then we change it to reviews default hex colour
