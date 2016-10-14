@@ -1,5 +1,5 @@
 <_>
-   <form_key>O6rKb61bxKSCdAlf</form_key>
+   <form_key>EwhilWTt4XCbdwjD</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.9.3</version>
+   <version>0.9.5</version>
    <stability>stable</stability>
-   <notes>- Multi-Store Bug Fixes</notes>
+   <notes>- Include store name in review booster CSV</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                                </files>
+            <files>                                                                                  </files>
          </files>
       </package>
       <extension>
@@ -112,8 +112,4 @@
          <ignore/>
       </ignore>
    </contents>
-   <page>1</page>
-   <limit>200</limit>
-   <folder/>
-   <package/>
 </_>
