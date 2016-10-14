@@ -266,13 +266,14 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
 			 ->_setActiveMenu('reviewstab')
 			 ->_title($this->__('Review Booster Download'));
 
-        $booster = array(array('name','email','order_id','product_id'));
+        $booster = array(array('name','email','order_id','product_id','product_name','date_created','date_updated', 'status'));
 
         $time = time(); // Now
         $from = date('Y-m-d H:i:s', $time - (60*60*24*30*3)); // 3 Months
         $to = date('Y-m-d H:i:s', $time);
 
         $orders = Mage::getModel('sales/order')->getCollection()->addAttributeToSelect('*')
+//        ->addAttributeToFilter('status', array('eq'=>'complete'))
         ->addAttributeToFilter('created_at', array('from' => $from, 'to' => $to))->load();
 
         foreach($orders as $order){
@@ -286,7 +287,7 @@ class Reviewscouk_Reviews_Adminhtml_ReviewsController extends Mage_Adminhtml_Con
                 $Item = Mage::getModel('catalog/product')->setStoreId($Item->getStoreId())->load($Item->getProductId());
                 if ($Item->getId())
                 {
-                    $booster[] = array($order->customer_email, $order->customer_firstname.' '.$order->customer_lastname, $order->entity_id, $Item->getSku());
+                    $booster[] = array($order->customer_email, $order->customer_firstname.' '.$order->customer_lastname, $order->entity_id, $Item->getSku(), $Item->getName(), $order->created_at, $order->updated_at, $order->status);
                 }
             }
         }
