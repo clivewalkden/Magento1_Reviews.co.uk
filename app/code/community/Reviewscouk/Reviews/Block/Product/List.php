@@ -12,7 +12,7 @@ class Reviewscouk_Reviews_Block_Product_List extends Mage_Catalog_Block_Product_
     /*
      * Hide Magento Default Rating - We dont use this to display rating because it is wrapped in a condition
      */
-    function getReviewsSummaryHtml(){
+    function getReviewsSummaryHtml(Mage_Catalog_Model_Product $product, $templateType = false, $displayIfNoReviews = false){
         return '';
     }
 
