@@ -43,7 +43,7 @@ class Reviewscouk_Reviews_Block_Reviews_Footer extends Reviewscouk_Reviews_Block
             $output = '<script src="'.$this->helper->getReviewsUrl('widget').'product/dist.js'.'"></script>';
             $output .= '<script src="'.$this->helper->getReviewsUrl('widget').'rating-snippet/dist.js'.'"></script>';
             $output .= '<link rel="stylesheet" href="'.$this->helper->getReviewsUrl('widget').'rating-snippet/dist.css" />';
-            $output .= '<script>ratingSnippet("ruk_rating_snippet", { store: "'.$this->helper->getStoreName().'", color:"'.$this->helper->getWidgetColor().'", linebreak: false, text: "Reviews" })</script>';
+            $output .= '<script>ratingSnippet("ruk_rating_snippet", { store: "'.$this->helper->getStoreName().'", color:"'.$this->helper->getWidgetColor().'", css: "'.$this->helper->getProductWidgetCss().'", linebreak: false, text: "Reviews" })</script>';
             return $output;
         }
     }

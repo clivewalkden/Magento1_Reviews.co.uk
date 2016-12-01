@@ -157,6 +157,13 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     /*
+     * Get Product Widget CSS
+     */
+     public function getProductWidgetCss(){
+         return $this->prepareCss($this->config('advanced/product_widget_css'));
+     }
+
+    /*
      * Generate the code for the Javascript product widget
      */
     public function getJavascriptProductWidget($sku){
@@ -173,7 +180,7 @@ class Reviewscouk_Reviews_Helper_Data extends Mage_Core_Helper_Abstract {
                     buttonClr: "#EEE",
                     textClr: "#333",
                     tabClr: "#eee",
-                    css: "<?php echo $this->prepareCss($this->config('advanced/product_widget_css')); ?>",
+                    css: "<?php echo $this->getProductWidgetCss() ?>",
                     questions: true,
                     showTabs: true,
                     ratingStars: false,
