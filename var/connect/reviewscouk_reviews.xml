@@ -1,5 +1,5 @@
 <_>
-   <form_key>hVBHnzVI9DKJevmj</form_key>
+   <form_key>vW9TrRmbQgpuUd0V</form_key>
    <name>reviewscouk_reviews</name>
    <channel>community</channel>
    <version_ids>
@@ -9,18 +9,18 @@
    <description>Reviews.co.uk Integration Plugin</description>
    <license>GPL</license>
    <license_uri/>
-   <version>0.9.6</version>
+   <version>0.9.7</version>
    <stability>stable</stability>
-   <notes>- Class Compatibility Fix</notes>
+   <notes>- Extra Codes in Product Feed</notes>
    <authors>
       <name>
          <name>Reviews.co.uk</name>
       </name>
       <user>
-         <user>Reviews</user>
+         <user>Liam</user>
       </user>
       <email>
-         <email>support@reviews.co.uk</email>
+         <email>liam@reviews.co.uk</email>
       </email>
    </authors>
    <depends_php_min>5.0.0</depends_php_min>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>                                                                                   </files>
+            <files>                                                                                     </files>
          </files>
       </package>
       <extension>
