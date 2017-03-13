@@ -52,6 +52,11 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 							<g:image_link>" . $product->getImageUrl() . "</g:image_link>
 							<g:brand><![CDATA[" . $brand . "]]></g:brand>
 							<g:mpn><![CDATA[" . $product->getSku() . "]]></g:mpn>
+							<g:gtin><![CDATA[" . $product->getGtin() . "]]></g:gtin>
+							<g:barcode><![CDATA[" . $product->getBarcode() . "]]></g:barcode>
+							<g:ean><![CDATA[" . $product->getEan() . "]]></g:ean>
+							<g:upc><![CDATA[" . $product->getUpc() . "]]></g:upc>
+							<g:google_product_category><![CDATA[" . $product->getGoogleProductCategory() . "]]></g:google_product_category>
 							<g:product_type><![CDATA[" . $product->getTypeID() . "]]></g:product_type>
 							";
 
