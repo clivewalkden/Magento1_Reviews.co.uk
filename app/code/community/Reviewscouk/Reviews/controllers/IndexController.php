@@ -24,7 +24,7 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 		if ($productFeedEnabled)
 		{
 			$cache = Mage::app()->getCache();
-			$saveCached = $cache->load("feed");
+			//$saveCached = $cache->load("feed");
 			if(!$saveCached)
 			{
 				$store = Mage::app()->getStore();
@@ -41,7 +41,10 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 
                     $product = Mage::getModel('catalog/product')->load($prod->getId());
 
-                    $brand = $product->getAttributeText('manufacturer') ? $product->getAttributeText('manufacturer') : 'Not Available';
+                    try {
+                        $brand = $product->getAttributeText('manufacturer') ? $product->getAttributeText('manufacturer') : 'Not Available';
+                    }catch(Exception $e){
+                    }
 
                     $price      = $product->getPrice();
                     $finalPrice = $product->getFinalPrice();
