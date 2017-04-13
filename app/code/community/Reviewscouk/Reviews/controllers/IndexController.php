@@ -24,7 +24,7 @@ class Reviewscouk_Reviews_IndexController extends Mage_Core_Controller_Front_Act
 		if ($productFeedEnabled)
 		{
 			$cache = Mage::app()->getCache();
-			//$saveCached = $cache->load("feed");
+			$saveCached = $cache->load("feed");
 			if(!$saveCached)
 			{
 				$store = Mage::app()->getStore();
