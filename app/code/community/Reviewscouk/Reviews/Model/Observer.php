@@ -47,13 +47,15 @@ class Reviewscouk_Reviews_Model_Observer
 	{
 		try
 		{
+            $name = $order->getBillingAddress()->getFirstname().' '.$order->getBillingAddress()->getLastname();
+
 			$magento_store_id = $order->getStoreId();
 
 			if ($this->getStoreId($magento_store_id) && $this->getApiKey($magento_store_id) && $this->helper->areInvitationsEnabled($magento_store_id))
 			{
 				$merchantResponse = $this->apiPost('merchant/invitation', array(
 					'source' => 'magento',
-					'name' => $order->getCustomerName(),
+					'name' => $name,
 					'email' => $order->getCustomerEmail(),
 					'order_id' => $order->getRealOrderId(),
 				), $magento_store_id);
@@ -84,7 +86,7 @@ class Reviewscouk_Reviews_Model_Observer
 
 				$productResponse = $this->apiPost('product/invitation', array(
 					'source' => 'magento',
-					'name' => $order->getCustomerName(),
+					'name' => $name,
 					'email' => $order->getCustomerEmail(),
 					'order_id' => $order->getRealOrderId(),
 					'products' => $p
