@@ -1,0 +1,17 @@
+{
+    "name": "reviewscouk/magento1-extension",
+    "description": "A plugin for Magento 1 interacts with your Review.co.uk account",
+    "type": "magento-module",
+    "homepage": "https://github.com/Reviewscouk/MagentoExtension",
+    "authors": [
+        {
+            "name": "Reviews.co.uk",
+            "email": "liam@reviews.co.uk",
+            "homepage": "https://www.reviews.co.uk/"
+        }
+    ],
+    "license": "GPL",
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "Allows the package to be installed into Magento"
+    }
+}
