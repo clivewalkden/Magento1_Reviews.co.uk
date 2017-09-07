@@ -2,12 +2,17 @@
     "name": "reviewscouk/magento1-extension",
     "description": "A plugin for Magento 1 interacts with your Review.co.uk account",
     "type": "magento-module",
-    "homepage": "https://github.com/Reviewscouk/MagentoExtension",
+    "homepage": "https://github.com/clivewalkden/Magento1_Reviews.co.uk",
     "authors": [
         {
             "name": "Reviews.co.uk",
             "email": "liam@reviews.co.uk",
             "homepage": "https://www.reviews.co.uk/"
+        },
+        {
+            "name": "Clive Walkden",
+            "email": "clive@sozodesign.co.uk",
+            "homepage": "https://www.sozodesign.co.uk"
         }
     ],
     "license": "GPL",

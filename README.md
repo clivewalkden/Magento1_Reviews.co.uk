@@ -10,7 +10,7 @@
 
 **Option 2 (Modman):**
 1. You will need to have an active [Reviews account](https://beta.reviews.co.uk/create-account) to setup the plugin.
-1. Install using modman `modman clone https://github.com/Reviewscouk/MagentoExtension`
+1. Install using modman `modman clone https://github.com/clivewalkden/Magento1_Reviews.co.uk`
 1. Clear your Magento cache and you're done
  
 **Option 3 (Composer, Sorry this is a private repository!):**
