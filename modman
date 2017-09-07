@@ -1,0 +1,24 @@
+## Modman Module Reviewscouk Magento 1 Extension
+code/community/Reviewscouk/Reviews/Adminhtml/Model/System/Config/Source/Region.php code/community/Reviewscouk/Reviews/Adminhtml/Model/System/Config/Source/Region.php
+code/community/Reviewscouk/Reviews/Adminhtml/Model/System/Config/Source/Widget.php code/community/Reviewscouk/Reviews/Adminhtml/Model/System/Config/Source/Widget.php
+code/community/Reviewscouk/Reviews/Block/Product/List.php code/community/Reviewscouk/Reviews/Block/Product/List.php
+code/community/Reviewscouk/Reviews/Block/Product/View.php code/community/Reviewscouk/Reviews/Block/Product/View.php
+code/community/Reviewscouk/Reviews/Block/Reviews/Abstract.php code/community/Reviewscouk/Reviews/Block/Reviews/Abstract.php
+code/community/Reviewscouk/Reviews/Block/Reviews/Footer.php code/community/Reviewscouk/Reviews/Block/Reviews/Footer.php
+code/community/Reviewscouk/Reviews/Block/Reviews/Widget.php code/community/Reviewscouk/Reviews/Block/Reviews/Widget.php
+code/community/Reviewscouk/Reviews/controllers/Adminhtml/ReviewsController.php code/community/Reviewscouk/Reviews/controllers/Adminhtml/ReviewsController.php
+code/community/Reviewscouk/Reviews/controllers/IndexController.php code/community/Reviewscouk/Reviews/controllers/IndexController.php
+code/community/Reviewscouk/Reviews/etc/adminhtml.xml code/community/Reviewscouk/Reviews/etc/adminhtml.xml
+code/community/Reviewscouk/Reviews/etc/config.xml code/community/Reviewscouk/Reviews/etc/config.xml
+code/community/Reviewscouk/Reviews/etc/system.xml code/community/Reviewscouk/Reviews/etc/system.xml
+code/community/Reviewscouk/Reviews/Helper/Data.php code/community/Reviewscouk/Reviews/Helper/Data.php
+code/community/Reviewscouk/Reviews/Model/Observer.php code/community/Reviewscouk/Reviews/Model/Observer.php
+design/adminhtml/default/default/layout/reviews_admin.xml design/adminhtml/default/default/layout/reviews_admin.xml
+design/adminhtml/default/default/template/reviews/dashboard.phtml design/adminhtml/default/default/template/reviews/dashboard.phtml
+design/adminhtml/default/default/template/reviews/export.phtml design/adminhtml/default/default/template/reviews/export.phtml
+design/frontend/base/default/layout/reviews_layout.xml design/frontend/base/default/layout/reviews_layout.xml
+design/frontend/base/default/template/reviews/footer.phtml design/frontend/base/default/template/reviews/footer.phtml
+design/frontend/base/default/template/reviews/product_reviews_widget.phtml design/frontend/base/default/template/reviews/product_reviews_widget.phtml
+etc/modules/Reviewscouk_Reviews.xml etc/modules/Reviewscouk_Reviews.xml
+locale/en_GB/Reviewscouk_Reviews.csv locale/en_GB/Reviewscouk_Reviews.csv
+locale/fr_FR/Reviewscouk_Reviews.csv locale/fr_FR/Reviewscouk_Reviews.csv
